@@ -14,8 +14,8 @@ create table usuarios(
 );
 
 create table Categorias(
-    nome varchar (20) not null,
-    informacoes varchar(40)
+    nome_categoria varchar (20) not null,
+
 );
 
 create table subCategorias(
@@ -32,8 +32,11 @@ create table paginas(
 );
 
 create table publicacao(
-    id_coment integer AUTO_INCREMENT not null primary key,
+    id_post integer AUTO_INCREMENT not null primary key,
+    titulo_post varchar(30) not null,
     id_user integer not null,
+    nome_categoria varchar(30),
+    nomeSubCategoria varchar(30),
     coment varchar(200) not null,
     data datetime not null,
     curtidas boolean
