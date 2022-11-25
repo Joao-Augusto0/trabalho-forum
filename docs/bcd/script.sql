@@ -2,7 +2,7 @@ drop database if exists AskTalk;
 create database AskTalk charset = UTF8 collate utf8_general_ci;
 use AskTalk;
 
-create table usuario(
+create table Usuario(
     id_user integer AUTO_INCREMENT not null primary key,
     nome_user varchar (20) not null,
     nick varchar (20) not null,
@@ -17,14 +17,14 @@ create table Categoria(
     favorito boolean
 );
 
-create table subCategoria(
+create table SubCategoria(
     subCategoria varchar (20) not null primary key,
     categoria varchar(20) not null,
     favorito boolean,
     foreign key(categoria) references Categoria(categoria)
 );
 
-create table publicacao(
+create table Publicacao(
     id_post integer AUTO_INCREMENT not null primary key,
     titulo_post varchar(30) not null,
     id_user integer not null,
@@ -33,7 +33,10 @@ create table publicacao(
     coment varchar(200) not null,
     data datetime not null,
     curtidas boolean,      
-    foreign key (id_user) references usuario(id_user) on delete cascade,
+    foreign key (id_user) references Usuario(id_user) on delete cascade,
     foreign key (categoria) references Categoria(categoria),
-    foreign key (subCategoria) references subCategoria(subCategoria) 
+    foreign key (subCategoria) references SubCategoria(subCategoria) 
 );
+
+insert into usuario values
+(default,"adrianalemos","Adrian","josefina@gmail","1234","19987428374",null);
