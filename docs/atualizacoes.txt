@@ -1,9 +1,0 @@
-criptografia
-comunidades
-
-procedure dos favoritos
-
-tirar a tela de login,
-mas para fazer algum post ter que se cadastrar ou logar,
-ter um botão para fazer as postagens, assim que clicar vai 
-verificar se vc esta logado e se estiver aparecer as opções para a postagem, se n estiver logado aparecer um modal com as opções para cadastro ou login
