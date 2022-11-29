@@ -11,3 +11,24 @@ ter um botão para fazer as postagens, assim que clicar vai
 verificar se vc esta logado e se estiver aparecer as opções para a postagem, se n estiver logado aparecer um modal com as opções para cadastro ou login
 
 dps de um tempo verificar se a pessoa tiver logado n acontece nada mas se ela n estiver logada aparece a menssagem de ela fazer login
+
+favoritar no front:
+clicar na imgem
+
+// salvar 
+pegar o titulo da imagem e salvar no localStorage
+favoritar.push[titulo]
+localStorege.setItem('favoritos', JSON.stringfy(favoritar))
+ 
+
+
+// preciso fazer um array de valores
+// ao inves de iniciar o array vazio pegar oq ja favoritei e
+// colocar la  ou deixar fazio
+// transformar a String em arrya
+let favoritar = JSON.parse(localStorage.getItem('favoritos')) || []
+
+
+
+// remover
+  
