@@ -32,7 +32,8 @@ create table Publicacao(
     subCategoria varchar(20),
     coment varchar(200) not null,
     data datetime not null,
-    curtidas boolean,      
+    curtidas boolean,
+    foto_publi mediumblob,      
     foreign key (id_user) references Usuario(id_user) on delete cascade,
     foreign key (categoria) references Categoria(categoria),
     foreign key (subCategoria) references SubCategoria(subCategoria) 

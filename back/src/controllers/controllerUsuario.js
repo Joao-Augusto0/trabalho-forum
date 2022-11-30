@@ -29,27 +29,27 @@ const listarUsuarios = (req, res) => {
 };
 
 
-// const Usuarios = (req, res) => {
-//   let string = Usuarios.toReadAll();
-//   con.query(string, (err, result) => {
-//     if (err == null) {
-//       res.json(Usuarios.toAscii(result)).end();
-//     }
-//   });
-// };
+const Usuarios = (req, res) => {
+  let string = Usuarios.toRead(req.params);
+  con.query(string, (err, result) => {
+    if (err == null) {
+      res.json(Usuarios.toAscii(result)).end();
+    }
+  });
+};
 
-// const excluirUsuarios = (req, res) => {
-//   let string = Usuarios.toDel(req.body);
-//   con.query(string, (err, result) => {
-//     if (err == null)
-//       if (result.affectedRows > 0) res.status(200).end();
-//       else res.status(404).end();
-//     else res.status(400).json(err).end();
-//   });
-// };
+const excluirUsuarios = (req, res) => {
+  let string = Usuarios.toDel(req.body);
+  con.query(string, (err, result) => {
+    if (err == null)
+      if (result.affectedRows > 0) res.status(200).end();
+      else res.status(404).end();
+    else res.status(400).json(err).end();
+  });
+};
 
 module.exports = {
     listarUsuarios,
     createUsuarios,
-    //   excluirUsuarios,
+    excluirUsuarios,
 }
