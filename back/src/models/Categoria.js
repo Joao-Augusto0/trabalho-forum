@@ -1,5 +1,5 @@
 const toCreate = (model) => {
-  return `INSERT INTO Categoria VALUES ('${model.categoria}')`;
+  return `INSERT INTO Categoria VALUES ('${model.categoria}',${model.favorito})`;
 };
 
 const toReadAll = () => {
@@ -7,7 +7,7 @@ const toReadAll = () => {
 };
 
 const toDel = (model) => {
-  return `DELETE FROM Categoria WHERE categoria = ${model.categoria}`;
+  return `DELETE FROM Categoria WHERE categoria = '${model.categoria}'`;
 };
 
 module.exports = {

@@ -1,5 +1,5 @@
 const toCreate = (model) => {
-  return `INSERT INTO SubCategoria VALUES ('${model.subCategoria}')`;
+  return `INSERT INTO SubCategoria VALUES ('${model.subCategoria}','${model.categoria}',${model.favorito} )`;
 };
 
 const toReadAll = () => {
@@ -7,7 +7,7 @@ const toReadAll = () => {
 };
 
 const toDel = (model) => {
-  return `DELETE FROM SubCategoria WHERE Subcategoria = ${model.subCategoria}`;
+  return `DELETE FROM SubCategoria WHERE Subcategoria = '${model.subCategoria}'`;
 };
 
 module.exports = {

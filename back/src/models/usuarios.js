@@ -23,31 +23,14 @@ const toRead = (model) => {
 };
 
 const toDel = (model) => {
-  return `DELETE FROM usuario WHERE id_user = ${model.id_user}`;
+  return `DELETE FROM Usuario WHERE id_user = ${model.id_user}`;
 };
 
+
 const toUpdate = (model) => {
-  if (file !== null) {
-    model.foto_user = file.buffer.toString("base64");
-    return `UPDATE INTO usuario SET id_user = ${id_user},
-        nome_user = '${model.nome_user}',
-        nick ='${model.nick}',
-        email = '${model.email}',
-        senha = '${model.senha}',
-        telefone = '${model.telefone}',
-        foto_user'${model.foto_user}'
-        WHERE id_user = ${id_user}`;
-  } else {
-    return `UPDATE INTO usuario SET id_user = ${id_user},
-        nome_user = '${model.nome_user}',
-        nick ='${model.nick}',
-        email = '${model.email}',
-        senha = '${model.senha}',
-        telefone = '${model.telefone}',
-        foto_user = 'default'
-        WHERE id_user = ${id_user}`;
-  }
+  return `UPDATE Usuario SET  nome_user = '${model.nome_user}', nick ='${model.nick}',email = '${model.email}',senha = '${model.senha}',telefone = '${model.telefone}',foto_user = '${model.foto_user}' WHERE id_user = ${model.id_user}`;
 }
+
 
 module.exports = {
   toReadAll,

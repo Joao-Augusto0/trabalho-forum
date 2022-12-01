@@ -39,5 +39,14 @@ create table Publicacao(
     foreign key (subCategoria) references SubCategoria(subCategoria) 
 );
 
-insert into usuario values
+insert into Usuario values
 (default,"adrianalemos","Adrian","josefina@gmail","1234","19987428374",null);
+
+insert into Categoria values
+("Futebol",TRUE);
+
+insert into SubCategoria values
+("Camisa de time","Futebol", TRUE);
+
+
+insert into Publicacao values (DEFAULT, "michael jordan",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,null);
