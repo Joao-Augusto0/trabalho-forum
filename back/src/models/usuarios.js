@@ -5,7 +5,11 @@ const toCreate = (model, file) => {
   } else {
     return `INSERT INTO Usuario VALUES (DEFAULT,'${model.nome_user}','${model.nick}','${model.email}','${model.senha}','${model.telefone}',null)`;
   }
-};
+}
+
+const toLogin = (user) =>{
+  return `SELECT * FROM Usuario WHERE email='${user.email}' AND senha='${user.senha}'`
+}
 
 const toAscii = (model) => {
   model.forEach((d) => {
@@ -38,5 +42,6 @@ module.exports = {
   toAscii,
   toDel,
   toUpdate,
-  toRead
+  toRead,
+  toLogin
 };

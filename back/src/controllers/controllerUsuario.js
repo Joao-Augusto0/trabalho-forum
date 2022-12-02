@@ -1,7 +1,7 @@
-const Usuarios = require("../models/usuarios");
+const Usuarios = require("../models/usuarios")
 const con = require("../dao/dbAskTalk");
 const multer = require("multer");
-const upload = multer().single("foto_user");
+const upload = multer().single("foto_user")
 
 const createUsuarios = async (req, res) => {
     upload(req, res, (err) => {
@@ -14,51 +14,50 @@ const createUsuarios = async (req, res) => {
                 } else {
                     res.status(500).json(err).end();
                 }
-            });
+            })
         }
-    });
-};
+    })
+}
 
 const listarUsuarios = (req, res) => {
-    let string = Usuarios.toReadAll();
+    let string = Usuarios.toReadAll()
     con.query(string, (err, result) => {
         if (err == null) {
-            res.json(Usuarios.toAscii(result)).end();
+            res.json(Usuarios.toAscii(result)).end()
         }
-    });
-};
+    })
+}
 
 const listarUsuariosId = (req, res) => {
   con.query(Usuarios.toRead(req.params), (err, result) => {
       if (err == null) {
-          res.json(Usuarios.toAscii(result)).end();
+          res.json(Usuarios.toAscii(result)).end()
       } else {
-          res.status(500).end();
+          res.status(500).end()
       }
   })
-};
-
+}
 
 const update = (req, res) => {
-    let string = Usuarios.toUpdate(req.body);
+    let string = Usuarios.toUpdate(req.body)
     con.query(string, (err, result) => {
         if (err == null)
             if (result.affectedRows > 0)
-                res.status(200).end();
+                res.status(200).end()
             else
-                res.status(404).end();
+                res.status(404).end()
         else
-            res.status(400).json(err).end();
-    });
+            res.status(400).json(err).end()
+    })
 }
 
 const excluirUsuarios = (req, res) => {
-  let string = Usuarios.toDel(req.body);
+  let string = Usuarios.toDel(req.body)
   con.query(string, (err, result) => {
     if (err == null)
-      if (result.affectedRows > 0) res.status(200).end();
-      else res.status(404).end();
-    else res.status(400).json(err).end();
+      if (result.affectedRows > 0) res.status(200).end()
+      else res.status(404).end()
+    else res.status(400).json(err).end()
   });
 };
 

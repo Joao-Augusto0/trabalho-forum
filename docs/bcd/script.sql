@@ -6,6 +6,7 @@ create table Usuario(
     id_user integer AUTO_INCREMENT not null primary key,
     nome_user varchar (20) not null,
     nick varchar (20) not null,
+    role varchar (10) not null,
     email varchar (30) not null,
     senha varchar (30) not null,
     telefone varchar(13),
@@ -40,7 +41,7 @@ create table Publicacao(
 );
 
 insert into Usuario values
-(default,"adrianalemos","Adrian","josefina@gmail","1234","19987428374",null);
+(default,"adrianalemos","Adrian","ADMIN","josefina@gmail","1234","19987428374",null);
 
 insert into Categoria values
 ("Futebol",TRUE);
@@ -50,3 +51,4 @@ insert into SubCategoria values
 
 
 insert into Publicacao values (DEFAULT, "michael jordan",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,null);
+
