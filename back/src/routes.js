@@ -29,9 +29,9 @@ router.post("/Publicacao", Publicacao.createPublicacao);
 router.delete("/Publicacao/:id_post", Publicacao.excluirPublicacao);
 router.put("/Publicacao", Publicacao.updatePublicacao);
 
-const Login = require('./controllers/controllerLogin')
+// const Login = require('./controllers/controllerLogin')
 
-router.post('/login', Login.LoginUser);
-router.post('/login/testee', Login.validaAcesso);
+// router.post('/login', Login.LoginUser);
+// router.post('/login/testee', Login.validaAcesso);
 
 module.exports = router;

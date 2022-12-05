@@ -1,9 +1,9 @@
 const toCreate = (model, file) => {
   if (file != null) {
     model.foto_publi = file.buffer.toString("base64");
-    return `INSERT INTO Publicacao VALUES (DEFAULT,'${model.titulo_post}','${model.id_post}','${model.categoria}','${model.subCategoria}','${model.coment}','${model.data}',${model.curtidas},'${model.foto_publi}');`
+    return `INSERT INTO Publicacao VALUES (DEFAULT,'${model.titulo_post}','${model.id_user}','${model.categoria}','${model.subCategoria}','${model.coment}','${model.data}',${model.curtidas},'${model.foto_publi}');`
   } else {
-    return `INSERT INTO Publicacao VALUES (DEFAULT,'${model.titulo_post}','${model.id_post}','${model.categoria}','${model.subCategoria}','${model.coment}','${model.data}',${model.curtidas},DEFAULT)`;
+    return `INSERT INTO Publicacao VALUES (DEFAULT,'${model.titulo_post}','${model.id_user}','${model.categoria}','${model.subCategoria}','${model.coment}','${model.data}',${model.curtidas},DEFAULT)`;
   }
 };
 
