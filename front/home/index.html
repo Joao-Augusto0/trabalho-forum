@@ -17,6 +17,10 @@
             <h1>AskTalk</h1>
         </div>
 
+        <button class="postar">
+            <img src="" alt="">
+        </button>
+
         <div class="lupa">
             <input id="lupa" type="text">
         </div>
@@ -29,8 +33,7 @@
             <div class="principal">
                 <div class="publi model">
                     <h2 class="titulo_post"></h2>
-                    <img src="" alt="" class="favorita">
-
+                    <img src="" alt="" class="post">
                     <h2 class="coment"></h2>
                     <div class="publiHeader">
                         <h2 class="categoria"></h2>
@@ -42,6 +45,35 @@
             </div>
         </div>
     </main>
+
+    <div class="modal">
+        <form action="" id="cadastro">
+            <label for="">titulo</label>
+            <input name="titulo" type="text">
+            <label for="">categoria</label>
+            <select name="categoria" id="">
+                <option value="Basquete">Basquete</option>
+                <option value="Futebol">Futebol</option>
+                <option value="Baisebol">Baisebol</option>
+                <option value="Tenis de Mesa">Tenis de Mesa</option>
+            </select>
+
+            <label for="">subCategoria</label>
+            <select name="sub_categoria" id="">
+                <option value="Bola">Bola</option>
+                <option value="Camisa de Time">Camisa de Time</option>
+                <option value="Estadio">Estadio</option>
+                <option value="Patrocinio">Patrocinio</option>
+            </select>
+
+            <label for="">Coment</label>
+            <input name="coment" type="text">
+            <label for="">foto</label>
+            <input name="foto_user" type="text">
+
+            <button>enviar</button>
+        </form>
+    </div>
 </body>
 <script src="index.js"></script>
 
