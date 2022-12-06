@@ -18,19 +18,31 @@ function carregar() {
                 lista.querySelector('.sub_categoria').innerHTML = "#" + infoPubli.subCategoria
                 lista.querySelector('.data_publi').innerHTML = dataFromatada
                 lista.querySelector('.coment').innerHTML = infoPubli.coment
-                lista.querySelector('.post').src = infoPubli.foto_publi == 'null' ? '../assets/default.png' : `data:image/png;base64,${infoPubli.foto_publi}`;
+                if (infoPubli.foto_publi != null) {
+                    lista.querySelector('.post').setAttribute('src', montaImg(infoPubli.foto_publi))
+                } else {
+                    lista.querySelector('.post').remove()
+                }
+
                 if (infoPubli.curtidas = 1) {
                     lista.querySelector('.curtida').src = '../assets/coracaoLikado.png';
                 } else {
                     lista.querySelector('.curtida').src = '../assets/coracaovazio.png';
                 }
-                console.log()
                 main.appendChild(lista)
             })
         })
 }
 
-function showModal(){
+function montaImg(img) {
+    if (img != null) {
+        return `data:image/png;base64,${img}`;
+    } else
+        return `./default.png`;
+}
+
+
+function showModal() {
     let modal = document.querySelector('.modal')
     modal.style.display = 'block'
 }
@@ -50,21 +62,21 @@ function postar() {
     let foto_user = document.querySelector("#fotoUserInp").value
 
     let dados = {
-        "titulo_post":titulo,
-        "categoria":categoria,
-        "sub_categoria":subCategoria,
-        "coment":coment,
-        "foto_user":foto_user
+        "titulo_post": titulo,
+        "categoria": categoria,
+        "sub_categoria": subCategoria,
+        "coment": coment,
+        "foto_user": foto_user
     }
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:  JSON.stringify(dados)
+        body: JSON.stringify(dados)
     };
     (url, options)
         .then(response => response.json())
         .then(resp => {
-            if(resp.titulo != undefined) {
+            if (resp.titulo != undefined) {
                 alert("Produto Cadastrado com Sucesso !")
                 window.location.reload()
             } else {

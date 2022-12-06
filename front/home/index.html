@@ -25,67 +25,92 @@
             <input id="lupa" type="text">
         </div>
     </header>
+
+    <!-- pagina inicial -->
+
     <main>
         <div class="tudo">
             <div class="categorias">
                 <h2>categorias</h2>
+                <input type="text" placeholder="pesquise">
             </div>
             <div class="principal">
                 <div class="publi model">
-                    <h2 class="titulo_post"></h2>
-                    <img src="" alt="" class="post">
-                    <h2 class="coment"></h2>
                     <div class="publiHeader">
-                        <h2 class="categoria"></h2>
-                        <h2 class="sub_categoria"></h2>
-                        <h2 class="data_publi"></h2>
-                        <img src="" alt="" class="curtida">
+                        <h2 class="titulo_post"></h2>
+                        <img src="" alt="" class="post">
+                        <h2 class="coment"></h2>
+                    </div>
+
+                    <div class="publiFooter">
+                        <div class="footer1">
+                            <div class="imgs">
+                                <img src="" alt="" class="curtida">
+                                <img id="comment" src="../assets/comment2.png" alt="">
+                            </div>
+                            <div>
+                                <h2 class="data_publi"></h2>
+                            </div>
+                        </div>
+                        <div class="footer2">
+                            <h2 class="categoria"></h2>
+                            <h2 class="sub_categoria"></h2>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- modal para cadastrar -->
+
+        <div class="modal">
+            <form action="" id="cadastro">
+                <button onclick="excluir()">x</button>
+                <div>
+                    <label for="">titulo:</label>
+                    <input id="tituloInp" name="titulo" type="text">
+                </div>
+                <div>
+                    <label for="">categoria</label>
+                    <select id="CategoriaInp" name="categoria" id="">
+                        <option value="Basquete">Basquete</option>
+                        <option value="Futebol">Futebol</option>
+                        <option value="Baisebol">Baisebol</option>
+                        <option value="Tenis de Mesa">Tenis de Mesa</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="">subCategoria</label>
+                    <select id="subCategoriaInp" name="sub_categoria" id="">
+                        <option value="Bola">Bola</option>
+                        <option value="Camisa de Time">Camisa de Time</option>
+                        <option value="Estadio">Estadio</option>
+                        <option value="Patrocinio">Patrocinio</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="">Coment:</label>
+                    <input id="comentInp" name="coment" type="text">
+                </div>
+                <div>
+                    <label for="">foto</label>
+                    <input id="fotoUserInp" name="foto_user" type="text">
+                </div>
+
+
+                <button>enviar</button>
+            </form>
+        </div>
+
+        <!-- modal para comentar -->
+
+        <div class="comentar">
+
+        </div>
+
     </main>
-
-    <div class="modal">
-        <form action="" id="cadastro">
-            <button onclick="excluir()">x</button>
-            <div>
-                <label for="">titulo:</label>
-                <input id="tituloInp" name="titulo" type="text">
-            </div>
-            <div>
-                <label for="">categoria</label>
-                <select id="CategoriaInp" name="categoria" id="">
-                    <option value="Basquete">Basquete</option>
-                    <option value="Futebol">Futebol</option>
-                    <option value="Baisebol">Baisebol</option>
-                    <option value="Tenis de Mesa">Tenis de Mesa</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="">subCategoria</label>
-                <select id="subCategoriaInp" name="sub_categoria" id="">
-                    <option value="Bola">Bola</option>
-                    <option value="Camisa de Time">Camisa de Time</option>
-                    <option value="Estadio">Estadio</option>
-                    <option value="Patrocinio">Patrocinio</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="">Coment:</label>
-                <input id="comentInp" name="coment" type="text">
-            </div>
-            <div>
-                <label for="">foto</label>
-                <input id="fotoUserInp" name="foto_user" type="text">
-            </div>
-
-
-            <button>enviar</button>
-        </form>
-    </div>
 </body>
 <script src="index.js"></script>
 
