@@ -30,22 +30,47 @@ function carregar() {
         })
 }
 
+function showModal(){
+    let modal = document.querySelector('.modal')
+    modal.style.display = 'block'
+}
+
+function excluir() {
+    let modal = document.querySelector('.modal')
+    modal.style.display = 'none'
+}
+
 function postar() {
-    const usuario = {
-        id_post: cadastro.login.value,
-        categoria: cadastro.categoria.value,
-        subCategoria: cadastro.subCategoria.value,
-        coment: cadastro.coment.value,
-        foto_user: foto_userBase64
+
+    let titulo = document.querySelector('#tituloInp').value
+    let categoria = document.querySelector('#CategoriaInp').value
+    let subCategoria = document.querySelector('#subCategoriaInp').value
+    // let data = document.querySelector('.data_publi').value
+    let coment = document.querySelector("#comentInp").value
+    let foto_user = document.querySelector("#fotoUserInp").value
+
+    let dados = {
+        "titulo_post":titulo,
+        "categoria":categoria,
+        "sub_categoria":subCategoria,
+        "coment":coment,
+        "foto_user":foto_user
     }
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:  JSON.stringify(usuario)
+        body:  JSON.stringify(dados)
     };
     (url, options)
         .then(response => response.json())
-        .then(response => console.log(response))
+        .then(resp => {
+            if(resp.titulo != undefined) {
+                alert("Produto Cadastrado com Sucesso !")
+                window.location.reload()
+            } else {
+                alert("Não foi possivél cadastrar o produto")
+            }
+        })
         .catch(err => console.error(err));
 }
 

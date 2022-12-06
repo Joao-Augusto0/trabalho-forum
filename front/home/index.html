@@ -17,7 +17,7 @@
             <h1>AskTalk</h1>
         </div>
 
-        <button class="postar">
+        <button onclick="showModal()" class="postar">
             <img src="" alt="">
         </button>
 
@@ -48,28 +48,40 @@
 
     <div class="modal">
         <form action="" id="cadastro">
-            <label for="">titulo</label>
-            <input name="titulo" type="text">
-            <label for="">categoria</label>
-            <select name="categoria" id="">
-                <option value="Basquete">Basquete</option>
-                <option value="Futebol">Futebol</option>
-                <option value="Baisebol">Baisebol</option>
-                <option value="Tenis de Mesa">Tenis de Mesa</option>
-            </select>
+            <button onclick="excluir()">x</button>
+            <div>
+                <label for="">titulo:</label>
+                <input id="tituloInp" name="titulo" type="text">
+            </div>
+            <div>
+                <label for="">categoria</label>
+                <select id="CategoriaInp" name="categoria" id="">
+                    <option value="Basquete">Basquete</option>
+                    <option value="Futebol">Futebol</option>
+                    <option value="Baisebol">Baisebol</option>
+                    <option value="Tenis de Mesa">Tenis de Mesa</option>
+                </select>
+            </div>
 
-            <label for="">subCategoria</label>
-            <select name="sub_categoria" id="">
-                <option value="Bola">Bola</option>
-                <option value="Camisa de Time">Camisa de Time</option>
-                <option value="Estadio">Estadio</option>
-                <option value="Patrocinio">Patrocinio</option>
-            </select>
+            <div>
+                <label for="">subCategoria</label>
+                <select id="subCategoriaInp" name="sub_categoria" id="">
+                    <option value="Bola">Bola</option>
+                    <option value="Camisa de Time">Camisa de Time</option>
+                    <option value="Estadio">Estadio</option>
+                    <option value="Patrocinio">Patrocinio</option>
+                </select>
+            </div>
 
-            <label for="">Coment</label>
-            <input name="coment" type="text">
-            <label for="">foto</label>
-            <input name="foto_user" type="text">
+            <div>
+                <label for="">Coment:</label>
+                <input id="comentInp" name="coment" type="text">
+            </div>
+            <div>
+                <label for="">foto</label>
+                <input id="fotoUserInp" name="foto_user" type="text">
+            </div>
+
 
             <button>enviar</button>
         </form>
