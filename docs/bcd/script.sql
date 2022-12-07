@@ -49,8 +49,6 @@ insert into Categoria values
 insert into SubCategoria values
 ("Camisa de time","Futebol", TRUE);
 
-
 insert into Publicacao values (DEFAULT, "michael jordan",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,null);
 
-
-insert into Publicacao values (DEFAULT, "rooooonalDo",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,to_base64(LOAD_FILE("C:/Users/des/Desktop/trabalho forum/trabalho-forum/front/assets/Cristiano-Ronaldo-div.jpg")));
+insert into Publicacao values (DEFAULT, "rooooonalDo",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,to_base64(LOAD_FILE("C:/Users/User/Desktop/trabalho-forum/front/assets/Cristiano-Ronaldo-div.jpg")));
