@@ -104,7 +104,6 @@ function excluiPubli(id) {
         fetch(url + '/' + id.id, options)
             .then(res => res.status)
             .then(res => {
-                if (res == 204)
                     window.location.reload()
             })
             .catch(err => console.error(err))
