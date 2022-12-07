@@ -15,7 +15,7 @@ const toAscii = (model) => {
 };
 
 const toReadAll = () => {
-  return "SELECT * FROM Publicacao";
+  return "SELECT * FROM Publicacao order by id_post desc";
 };
 
 const toDel = (model) => {

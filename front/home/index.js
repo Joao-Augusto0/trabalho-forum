@@ -1,22 +1,24 @@
 var main = document.querySelector('.principal')
 var publi = document.querySelector('.publi')
-const url = fetch("http://localhost:3000/Publicacao")
+const url = "http://localhost:3000/Publicacao"
 const cadastro = document.querySelector('#cadastro')
 
 function carregar() {
+    const options = { method: 'GET' }
 
-    url.then(resp => { return resp.json() })
+    fetch(url, options).then(resp => { return resp.json() })
         .then(info => {
             info.forEach(infoPubli => {
                 var date = new Date(infoPubli.data)
-                let dataFromatada = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+                let dataFormatada = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 
                 var lista = publi.cloneNode(true)
                 lista.classList.remove("model")
+                lista.id = infoPubli.id_post
                 lista.querySelector('.titulo_post').innerHTML = infoPubli.titulo_post
                 lista.querySelector('.categoria').innerHTML = "#" + infoPubli.categoria
                 lista.querySelector('.sub_categoria').innerHTML = "#" + infoPubli.subCategoria
-                lista.querySelector('.data_publi').innerHTML = dataFromatada
+                lista.querySelector('.data_publi').innerHTML = dataFormatada
                 lista.querySelector('.coment').innerHTML = infoPubli.coment
                 if (infoPubli.foto_publi != null) {
                     lista.querySelector('.post').setAttribute('src', montaImg(infoPubli.foto_publi))
@@ -25,9 +27,9 @@ function carregar() {
                 }
 
                 if (infoPubli.curtidas = 1) {
-                    lista.querySelector('.curtida').src = '../assets/coracaoLikado.png';
+                    lista.querySelector('.curtida').src = '../assets/coracaoLikado.png'
                 } else {
-                    lista.querySelector('.curtida').src = '../assets/coracaovazio.png';
+                    lista.querySelector('.curtida').src = '../assets/coracaovazio.png'
                 }
                 main.appendChild(lista)
             })
@@ -55,35 +57,62 @@ function excluir() {
 function postar() {
 
     let titulo = document.querySelector('#tituloInp').value
+    let id_user = document.querySelector('#id_user').value
     let categoria = document.querySelector('#CategoriaInp').value
     let subCategoria = document.querySelector('#subCategoriaInp').value
-    // let data = document.querySelector('.data_publi').value
     let coment = document.querySelector("#comentInp").value
-    let foto_user = document.querySelector("#fotoUserInp").value
+    let dataInp = document.querySelector('#dataInp').value
+    let curtidas = document.querySelector('#curtidas').value
+    let foto_publi = document.querySelector("#fotoPubliInp").value
 
     let dados = {
         "titulo_post": titulo,
+        "id_user": id_user,
         "categoria": categoria,
-        "sub_categoria": subCategoria,
+        "subCategoria": subCategoria,
         "coment": coment,
-        "foto_user": foto_user
+        "data": dataInp,
+        "curtidas": curtidas,
+        "foto_publi": foto_publi
     }
-    const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+
+    fetch(url, {
+        "method": "Post",
+        "headers": {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(dados)
-    };
-    (url, options)
-        .then(response => response.json())
+    })
+        .then(res => { return res.json() })
         .then(resp => {
-            if (resp.titulo != undefined) {
+            if (resp.login != undefined) {
                 alert("Produto Cadastrado com Sucesso !")
                 window.location.reload()
             } else {
                 alert("Não foi possivél cadastrar o produto")
             }
         })
-        .catch(err => console.error(err));
+}
+
+function excluiPubli(id) {
+    id = id.parentNode
+    const options = {
+        method: 'DELETE'
+    }
+
+    if (confirm("confirmar a exclusão?")) {
+        fetch(url + '/' + id.id, options)
+            .then(res => res.status)
+            .then(res => {
+                if (res == 204)
+                    window.location.reload()
+            })
+            .catch(err => console.error(err))
+    }
+}
+
+function post() {
+
 }
 
 const toBase64create = () => {
