@@ -1,9 +1,9 @@
 const toCreate = (model, file) => {
   if (file != null) {
     model.foto_user = file.buffer.toString("base64");
-    return `INSERT INTO Usuario VALUES (DEFAULT,'${model.nome_user}','${model.nick}','${model.email}','${model.senha}','${model.telefone}','${model.foto_user}')`;
+    return `INSERT INTO Usuario VALUES (DEFAULT,'${model.nome_user}','${model.nick}','${model.role}','${model.email}','${model.senha}','${model.telefone}','${model.foto_user}')`;
   } else {
-    return `INSERT INTO Usuario VALUES (DEFAULT,'${model.nome_user}','${model.nick}','${model.email}','${model.senha}','${model.telefone}',null)`;
+    return `INSERT INTO Usuario VALUES (DEFAULT,'${model.nome_user}','${model.nick}','${model.role}','${model.email}','${model.senha}','${model.telefone}',null)`;
   }
 }
 

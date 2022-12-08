@@ -45,7 +45,29 @@ insert into Usuario values
 
 insert into Categoria values
 ("Futebol",TRUE);
+insert into Categoria values
+("Basquete",FALSE);
+insert into Categoria values
+("Hockey no gelo",FALSE);
+insert into Categoria values
+("Voleibol",FALSE);
+insert into Categoria values
+("Rugby",FALSE);
 
+insert into SubCategoria values
+("Camisa de time","Futebol", TRUE);
+insert into SubCategoria values
+("Camisa de time","Basquete", TRUE);
+insert into SubCategoria values
+("Camisa de time","Futebol", TRUE);
+insert into SubCategoria values
+("Camisa de time","Futebol", TRUE);
+insert into SubCategoria values
+("Camisa de time","Futebol", TRUE);
+insert into SubCategoria values
+("Camisa de time","Futebol", TRUE);
+insert into SubCategoria values
+("Camisa de time","Futebol", TRUE);
 insert into SubCategoria values
 ("Camisa de time","Futebol", TRUE);
 
