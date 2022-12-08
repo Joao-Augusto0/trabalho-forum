@@ -19,6 +19,16 @@ const createPublicacao = async (req, res) => {
     });
 };
 
+const deletePubli = (req, res) => {
+    let string = Publicacao.admDelete(req.params);
+    con.query(string, (err, result) => {
+        if (err == null)
+            if (result.affectedRows > 0) res.status(200).end();
+            else res.status(404).end();
+        else res.status(400).json(err).end();
+    })
+}
+
 const listarPublicacao = (req, res) => {
     let string = Publicacao.toReadAll();
     con.query(string, (err, result) => {
@@ -43,18 +53,19 @@ const updatePublicacao = (req, res) => {
 }
 
 const excluirPublicacao = (req, res) => {
-  let string = Publicacao.toDel(req.params);
-  con.query(string, (err, result) => {
-    if (err == null)
-      if (result.affectedRows > 0) res.status(200).end();
-      else res.status(404).end();
-    else res.status(400).json(err).end();
-  });
+    let string = Publicacao.toDel(req.params);
+    con.query(string, (err, result) => {
+        if (err == null)
+            if (result.affectedRows > 0) res.status(200).end();
+            else res.status(404).end();
+        else res.status(400).json(err).end();
+    });
 };
 
 module.exports = {
     listarPublicacao,
     createPublicacao,
     excluirPublicacao,
-    updatePublicacao
+    updatePublicacao,
+    deletePubli
 }

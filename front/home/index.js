@@ -14,7 +14,10 @@ function carregar() {
 
                 var lista = publi.cloneNode(true)
                 lista.classList.remove("model")
+
+
                 lista.id = infoPubli.id_post
+
                 lista.querySelector('.titulo_post').innerHTML = infoPubli.titulo_post
                 lista.querySelector('.categoria').innerHTML = "#" + infoPubli.categoria
                 lista.querySelector('.sub_categoria').innerHTML = "#" + infoPubli.subCategoria
@@ -35,6 +38,8 @@ function carregar() {
             })
         })
 }
+
+
 
 function montaImg(img) {
     if (img != null) {
@@ -99,6 +104,17 @@ function excluiPubli(id) {
     const options = {
         method: 'DELETE'
     }
+
+    localStorage.getItem("info",JSON.stringify({"id":data[0].id_user}))
+    // url
+
+    //verificar se esse id combina com o id de qm publicou
+    //e se for igaul ele podera excluir
+    //se nao ele da mensagem de erro
+
+    // if(){
+        
+    // }
 
     if (confirm("confirmar a exclusão?")) {
         fetch(url + '/' + id.id, options)

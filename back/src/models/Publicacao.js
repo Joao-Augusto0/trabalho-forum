@@ -7,6 +7,11 @@ const toCreate = (model, file) => {
   }
 };
 
+const admDelete = (model) => {
+  return `DELETE FROM Publicacao WHERE id_post = ${model.id_post}`
+}
+
+
 const toAscii = (model) => {
   model.forEach((d) => {
     if (d.foto_publi != null) d.foto_publi = d.foto_publi.toString("ascii");
@@ -31,5 +36,6 @@ module.exports = {
   toCreate,
   toAscii,
   toDel,
-  toUpdate
+  toUpdate,
+  admDelete
 };

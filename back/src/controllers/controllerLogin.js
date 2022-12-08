@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
 const Usuario = require("../models/usuarios");
+const Publicacao = require("../models/Publicacao");
 const con = require("../dao/dbAskTalk");
 
 
@@ -10,7 +11,7 @@ const LoginUser = (req, res) => {
         if (err == null) {
             result = JSON.stringify(result)
             result = JSON.parse(result)
-            jwt.sign((result[0]), process.env.KEY, { expiresIn: '1m' }, function (err, token) {
+            jwt.sign((result[0]), process.env.KEY, { expiresIn: '10m' }, function (err, token) {
                 if (err == null) {
                     result[0]["token"] = token
                     res.status(201).json(result).end()
@@ -21,6 +22,8 @@ const LoginUser = (req, res) => {
         }
     })
 }
+
+
 
 module.exports = {
     LoginUser
