@@ -1,4 +1,4 @@
-import { StyleSheet, TextInputView, Image, Text, TouchableOpacity, } from "react-native";
+import { StyleSheet, TextInput,View, Image, Text, TouchableOpacity} from "react-native";
 import { useEffect, useState } from 'react'
 
 export default function Login({ navigation }) {
@@ -10,7 +10,6 @@ export default function Login({ navigation }) {
         setPosts(data)
       })
   })
-
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
