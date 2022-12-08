@@ -11,7 +11,6 @@ router.delete("/Usuarios", Usuarios.excluirUsuarios);
 
 const Categoria = require("./controllers/controllerCategoria");
 
-
 router.get("/Categorias", Categoria.listarCategoria);
 router.post("/Categorias", Categoria.createCategoria);
 router.delete("/Categorias", Categoria.excluirCategoria);
@@ -29,9 +28,12 @@ router.post("/Publicacao", Publicacao.createPublicacao);
 router.delete("/Publicacao/:id_post", Publicacao.excluirPublicacao);
 router.put("/Publicacao", Publicacao.updatePublicacao);
 
-// const Login = require('./controllers/controllerLogin')
+const Login = require('./controllers/controllerLogin')
 
-// router.post('/login', Login.LoginUser);
-// router.post('/login/testee', Login.validaAcesso);
+router.post('/login', Login.LoginUser);
+
+// const LoginMiddleware = require("./middleware/middleware")
+
+// router.post('/login/middleware', LoginMiddleware.validaAcesso);
 
 module.exports = router;

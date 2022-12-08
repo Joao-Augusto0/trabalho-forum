@@ -1,14 +1,17 @@
-import { useState } from "react";
-import {
-  StyleSheet,
-  TextInput,
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, TextInputView, Image, Text, TouchableOpacity, } from "react-native";
+import { useEffect, useState } from 'react'
 
 export default function Login({ navigation }) {
+
+  useEffect(() => {
+    fetch("http://localhost:3000/")
+      .then(res => { return res.json() })
+      .then(data => {
+        setPosts(data)
+      })
+  })
+
+
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -84,21 +87,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#cdcdd4",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius:40
+    borderRadius: 40
   },
   input: {
     backgroundColor: "#fff",
-    margin:5,
+    margin: 5,
   },
-  titulo:{
-    margin:10,
+  titulo: {
+    margin: 10,
   },
   title: {
     color: "#fff",
   },
   title2: {
     color: "#070227",
-    margin:10
+    margin: 10
   },
   button: {
     backgroundColor: "#001B6B",
