@@ -34,6 +34,6 @@ router.put("/Publicacao", Publicacao.updatePublicacao);
 
 const Login = require('./controllers/controllerLogin')
 
-router.post('/login', Login.LoginUser);
+router.post('/Login', Login.LoginUser);
 
 module.exports = router;
