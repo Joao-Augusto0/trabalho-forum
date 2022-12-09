@@ -113,16 +113,16 @@ function DeletePubli(idUsers, id) {
   const options = {
     method: "DELETE",
     headers: {
-        "authorization": User.token
-      }
-  };
+      authorization: User.token,
+    },
+  }
 
   if (User.role == "ADMIN") {
     if (confirm("confirmar a exclusão? ADM")) {
       fetch(url + "/" + "adm/" + id.id, options)
         .then((res) => res.status)
         .then((res) => {
-            console.log(res)
+          console.log(res);
           window.location.reload();
         })
         .catch((err) => console.error(err));
@@ -136,64 +136,10 @@ function DeletePubli(idUsers, id) {
         })
         .catch((err) => console.error(err));
     }
-  }else{
-    alert('Você não tem permissão para excluir esta publicação')
+  } else {
+    alert("Você não tem permissão para excluir esta publicação");
   }
 }
-
-// function excluirPubliAdm(idUsers,id){
-//     idUsers = idUsers.parentNode
-//     id = id.parentNode
-//     console.log(id.id,idUsers.idUsers)
-
-//     const options = {
-//       method: "DELETE"
-//     }
-
-//     const User = JSON.parse(localStorage.getItem("info"))
-
-//     //verificar se esse id combina com o id de qm publicou
-//     //e se for igaul ele podera excluir
-//     //se nao ele da mensagem de erro
-
-//     if(User.role == "ADMIN"){
-//         if (confirm("confirmar a exclusão?")) {
-//             fetch(url + "/" +"adm/"+ id.id, options)
-//               .then((res) => res.status)
-//               .then((res) => {
-//                 window.location.reload();
-//               })
-//               .catch((err) => console.error(err));
-//           }
-//     }
-// }
-
-// function excluiPubliUser(idUsers,id) {
-//   id = id.parentNode
-//   idUsers = idUsers.parentNode
-// //   console.log(id.id,idUsers.idUsers)
-
-//   const options = {
-//     method: "DELETE",
-//   }
-
-//   const idUser = JSON.parse(localStorage.getItem("info"))
-
-//   //verificar se esse id combina com o id de qm publicou
-//   //e se for igaul ele podera excluir
-//   //se nao ele da mensagem de erro
-
-//   if(idUser.id == idUsers.idUsers){
-//     if (confirm("confirmar a exclusão?")) {
-//         fetch(url + "/" + id.id, options)
-//           .then((res) => res.status)
-//           .then((res) => {
-//             window.location.reload();
-//           })
-//           .catch((err) => console.error(err));
-//       }
-//   }
-// }
 
 const toBase64create = () => {
   let file = document.querySelector("#fileCreate")["files"][0];
@@ -214,3 +160,80 @@ const toBase64create = () => {
 //     }
 //     fr.readAsDataURL(file);
 // }
+
+function showModalComent(id) {
+  let modal = document.querySelector(".comentar");
+  modal.style.display = "block";
+
+  post(id)
+}
+
+function excluirModalComent() {
+  let modal = document.querySelector(".comentar");
+  modal.style.display = "none";
+}
+
+function post(id){
+  id = id.parentNode.parentNode.parentNode.parentNode;
+
+  const options = { method: "GET" };
+
+  fetch(url + "/" + id.id, options)
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((info) => {
+      info.forEach((infoPubli) => {
+        var date = new Date(infoPubli.data);
+        let dataFormatada = date.toLocaleDateString("pt-BR", {
+          timeZone: "UTC",
+        });
+
+        var lista = publi.cloneNode(true);
+        lista.classList.remove("model");
+
+        lista.id = infoPubli.id_post;
+        lista.idUsers = infoPubli.id_user;
+
+        lista.querySelector(".titulo_post").innerHTML = infoPubli.titulo_post;
+        lista.querySelector(".categoria").innerHTML = "#" + infoPubli.categoria;
+        lista.querySelector(".sub_categoria").innerHTML =
+          "#" + infoPubli.subCategoria;
+        lista.querySelector(".data_publi").innerHTML = dataFormatada;
+        lista.querySelector(".coment").innerHTML = infoPubli.coment;
+
+        // criando comentario 
+
+        criarElement()
+
+
+
+        if (infoPubli.foto_publi != null) {
+          lista
+            .querySelector(".post")
+            .setAttribute("src", montaImg(infoPubli.foto_publi));
+        } else {
+          lista.querySelector(".post").remove();
+        }
+
+        if ((infoPubli.curtidas == 1)) {
+          lista.querySelector(".curtida").src = "../assets/coracaoLikado.png";
+        } else {
+          lista.querySelector(".curtida").src = "../assets/coracaovazio.png";
+        }
+        main.appendChild(lista);
+      })
+    })
+}
+
+
+function criarElement(){
+  const res = document.createElement("div")
+  const inp = document.createElement("input")
+
+  res.innerHTML = inp
+
+  // res.appendChild(inp)
+  // const respubli = document.querySelector('.footer2')
+  document.querySelector('.footer2').appendChild(res)
+}

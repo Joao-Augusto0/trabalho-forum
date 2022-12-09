@@ -38,6 +38,16 @@ const listarPublicacao = (req, res) => {
     });
 };
 
+const listarPublicacaoId = (req, res) => {
+    con.query(Publicacao.toRead(req.params), (err, result) => {
+        if (err == null) {
+            res.json(Publicacao.toAscii(result)).end()
+        } else {
+            res.status(500).end()
+        }
+    })
+  }
+
 
 const updatePublicacao = (req, res) => {
     let string = Publicacao.toUpdate(req.body);
@@ -67,5 +77,6 @@ module.exports = {
     createPublicacao,
     excluirPublicacao,
     updatePublicacao,
-    deletePubli
+    deletePubli,
+    listarPublicacaoId
 }

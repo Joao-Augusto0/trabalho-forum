@@ -22,9 +22,11 @@ router.post("/SubCategorias", SubCategorias.createSubCategoria);
 router.delete("/SubCategorias/:subCategoria", SubCategorias.excluirSubCategoria);
 
 const Publicacao = require("./controllers/controllerPublicacao");
+
 const LoginMiddleware = require("./middleware/middleware");
 
 router.get("/Publicacao", Publicacao.listarPublicacao);
+router.get("/Publicacao/:id_post", Publicacao.listarPublicacaoId);
 router.post("/Publicacao", Publicacao.createPublicacao);
 router.delete("/Publicacao/:id_post", Publicacao.excluirPublicacao);
 router.delete("/Publicacao/adm/:id_post",LoginMiddleware.validaAcesso ,Publicacao.deletePubli);
@@ -33,7 +35,5 @@ router.put("/Publicacao", Publicacao.updatePublicacao);
 const Login = require('./controllers/controllerLogin')
 
 router.post('/login', Login.LoginUser);
-
-// router.post('/login/del', LoginMiddleware.validaAcesso);
 
 module.exports = router;

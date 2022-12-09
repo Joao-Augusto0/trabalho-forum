@@ -23,6 +23,10 @@ const toReadAll = () => {
   return "SELECT * FROM Publicacao order by id_post desc";
 };
 
+const toRead = (model) => {
+  return `SELECT * FROM Publicacao WHERE id_post = ${model.id_post} order by id_post desc`;
+};
+
 const toDel = (model) => {
   return `DELETE FROM Publicacao WHERE id_post = ${model.id_post}`;
 };
@@ -37,5 +41,6 @@ module.exports = {
   toAscii,
   toDel,
   toUpdate,
-  admDelete
+  admDelete,
+  toRead
 };

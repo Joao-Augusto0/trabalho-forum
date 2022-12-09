@@ -142,7 +142,7 @@ header {
 }
 
 .modal {
-    height: 50vh;
+    height: fit-content;
     width: 20vw;
     background-color: rgba(3, 69, 128, 0.938);
     display: none;
@@ -174,12 +174,15 @@ select {
 }
 
 .comentar {
-    height: 100px;
+    height: fit-content;
     width: 100px;
-    background-color: black;
+    background-color: rgb(33, 91, 129);
+    display: none;
 }
 
-/* 
-#comment{
-    height: 50px;
-} */
+.comentar>button{
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 100%;
+}
