@@ -32,7 +32,7 @@ router.put("/Publicacao", Publicacao.updatePublicacao);
 
 const Login = require('./controllers/controllerLogin')
 
-router.post('/login', Login.LoginUser);
+router.post('/Login', Login.LoginUser);
 
 // router.post('/login/del', LoginMiddleware.validaAcesso);
 

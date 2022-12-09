@@ -1,29 +1,34 @@
-import { StyleSheet, TextInput,View, Image, Text, TouchableOpacity} from "react-native";
+import { StyleSheet, TextInput, View, Image, Text, TouchableOpacity } from "react-native";
 import { useEffect, useState } from 'react'
 
 export default function Login({ navigation }) {
 
+  const [login, setLogin] = useState([])
+
+
   useEffect(() => {
-    fetch("http://localhost:3000/")
+    fetch("http://localhost:3000/Login"
+    // ,{
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     "email": email,
+    //     "senha": senha
+    //   })
+    // }
+    )
       .then(res => { return res.json() })
       .then(data => {
-        setPosts(data)
+        setLogin(data)
+        console.log(data)
       })
   })
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
-  const data = [
-    {
-      email: "fulano",
-      senha: "umdois",
-    },
-    {
-      email: "beltrano@ig.com.br",
-      senha: "s3nh4",
-    },
-  ];
 
   return (
     <View style={styles.main}>
@@ -56,11 +61,13 @@ export default function Login({ navigation }) {
             });
           }}
         >
+
           <Text style={styles.title}>ENTRAR</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             data.forEach((user) => {
+              console.log(user)
               if (user.email === email && user.senha === senha)
                 navigation.navigate("Home");
             });

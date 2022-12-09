@@ -141,60 +141,6 @@ function DeletePubli(idUsers, id) {
   }
 }
 
-// function excluirPubliAdm(idUsers,id){
-//     idUsers = idUsers.parentNode
-//     id = id.parentNode
-//     console.log(id.id,idUsers.idUsers)
-
-//     const options = {
-//       method: "DELETE"
-//     }
-
-//     const User = JSON.parse(localStorage.getItem("info"))
-
-//     //verificar se esse id combina com o id de qm publicou
-//     //e se for igaul ele podera excluir
-//     //se nao ele da mensagem de erro
-
-//     if(User.role == "ADMIN"){
-//         if (confirm("confirmar a exclusão?")) {
-//             fetch(url + "/" +"adm/"+ id.id, options)
-//               .then((res) => res.status)
-//               .then((res) => {
-//                 window.location.reload();
-//               })
-//               .catch((err) => console.error(err));
-//           }
-//     }
-// }
-
-// function excluiPubliUser(idUsers,id) {
-//   id = id.parentNode
-//   idUsers = idUsers.parentNode
-// //   console.log(id.id,idUsers.idUsers)
-
-//   const options = {
-//     method: "DELETE",
-//   }
-
-//   const idUser = JSON.parse(localStorage.getItem("info"))
-
-//   //verificar se esse id combina com o id de qm publicou
-//   //e se for igaul ele podera excluir
-//   //se nao ele da mensagem de erro
-
-//   if(idUser.id == idUsers.idUsers){
-//     if (confirm("confirmar a exclusão?")) {
-//         fetch(url + "/" + id.id, options)
-//           .then((res) => res.status)
-//           .then((res) => {
-//             window.location.reload();
-//           })
-//           .catch((err) => console.error(err));
-//       }
-//   }
-// }
-
 const toBase64create = () => {
   let file = document.querySelector("#fileCreate")["files"][0];
   let fr = new FileReader();
