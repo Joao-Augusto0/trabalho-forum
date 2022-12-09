@@ -26,7 +26,7 @@ export default function Main() {
             <View key={index} style={styles.publi}>
               <Text style={styles.texto}>{post.titulo_post}</Text>
               <Text style={styles.texto}>{post.coment}</Text>
-              <Image style={styles.image} source={{uri: `data:image/jpg;base64,${base64Image}`}} />
+              <Image style={styles.image} source={{ uri: `data:image/jpeg;base64,${base64Image}` }} />
               <Text style={styles.texto}>{post.categoria}</Text>
               <Text style={styles.texto}>{post.subCategoria}</Text>
               <Text style={styles.texto}>{dataFormatadata}</Text>
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     fontSize: '35px',
     fontFamily: 'Arial',
   },
-  image:{
-    height:'20px',
-    width:'20px'
+  image: {
+    height: '20px',
+    width: '20px'
   }
 })
