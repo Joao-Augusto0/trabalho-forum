@@ -1,6 +1,9 @@
 var main = document.querySelector(".principal");
 var publi = document.querySelector(".publi");
+//publicacao
 const url = "http://localhost:3000/Publicacao";
+//categorias
+const urlCategoria = "http://localhost:3000/Categorias";
 const cadastro = document.querySelector("#cadastro");
 
 function carregar() {
@@ -173,7 +176,7 @@ function excluirModalComent() {
   modal.style.display = "none";
 }
 
-function post(id){
+function post(id) {
   id = id.parentNode.parentNode.parentNode.parentNode;
 
   const options = { method: "GET" };
@@ -188,6 +191,8 @@ function post(id){
         let dataFormatada = date.toLocaleDateString("pt-BR", {
           timeZone: "UTC",
         });
+
+        //clonar
 
         var lista = publi.cloneNode(true);
         lista.classList.remove("model");
@@ -227,7 +232,7 @@ function post(id){
 }
 
 
-function criarElement(){
+function criarElement() {
   const res = document.createElement("div")
   const inp = document.createElement("input")
 
@@ -236,4 +241,27 @@ function criarElement(){
   // res.appendChild(inp)
   // const respubli = document.querySelector('.footer2')
   document.querySelector('.footer2').appendChild(res)
+}
+
+
+
+//filtro
+
+var busca = document.querySelector("#lupa")
+var linhas = document.querySelectorAll(".publi")
+
+busca.addEventListener("keyup", buscar)
+
+function buscar() {
+  linhas.forEach((linha) => {
+    console.log()
+    let temp = linha.querySelector('.titulo_post')
+    if (temp != null) {
+      if (linha.innerHTML.toLowerCase().includes(busca.value.toLowerCase())) {
+        linha.style.display = "table-row"
+      } else {
+        linha.style.display = "none"
+      }
+    }
+  })
 }
