@@ -3,32 +3,39 @@ import { useEffect, useState } from 'react'
 
 export default function Login({ navigation }) {
 
-  const [login, setLogin] = useState([])
+  const [email, setEmail] = useState("josefina@gmail");
+  const [senha, setSenha] = useState("1234");
 
 
-  useEffect(() => {
-    fetch("http://localhost:3000/Login"
-    // ,{
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     "email": email,
-    //     "senha": senha
-    //   })
-    // }
+  let dados = {
+    email: email,
+    senha: senha
+  }
+
+  const userLogin = () => {
+    fetch("http://10.87.207.12:3000/Login"
+      , {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+      }
     )
-      .then(res => { return res.json() })
-      .then(data => {
-        setLogin(data)
-        console.log(data)
+      .then(res => {
+        return res.json()
       })
-  })
+      .then(data => {
+        if (data.email !== undefined) {
+          navigation.navigate("Home")
+        } else {
+          alert('Erro')
+        }
+      })
+  }
 
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+
 
   return (
     <View style={styles.main}>
@@ -55,25 +62,10 @@ export default function Login({ navigation }) {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            data.forEach((user) => {
-              if (user.email === email && user.senha === senha)
-                navigation.navigate("Home");
-            });
+            userLogin()
           }}
         >
-
           <Text style={styles.title}>ENTRAR</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            data.forEach((user) => {
-              console.log(user)
-              if (user.email === email && user.senha === senha)
-                navigation.navigate("Home");
-            });
-          }}
-        >
-          <Text style={styles.title2}>ENTRAR SEM CADASTRO</Text>
         </TouchableOpacity>
       </View>
     </View>

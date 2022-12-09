@@ -14,7 +14,7 @@ const LoginUser = (req, res) => {
             jwt.sign((result[0]), process.env.KEY, { expiresIn: '10m' }, function (err, token) {
                 if (err == null) {
                     result[0]["token"] = token
-                    res.status(201).json(result).end()
+                    res.status(201).json(result[0]).end()
                 } else {
                     res.status(404).json(err).end()
                 }

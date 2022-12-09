@@ -49,6 +49,7 @@ function carregar() {
 
 function montaImg(img) {
   if (img != null) {
+    console.log(`data:image/png;base64,${img}`)
     return `data:image/png;base64,${img}`;
   } else return `./default.png`;
 }
