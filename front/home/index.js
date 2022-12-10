@@ -4,7 +4,10 @@ var publi = document.querySelector(".publi");
 const url = "http://localhost:3000/Publicacao";
 //categorias
 const urlCategoria = "http://localhost:3000/Categorias";
+
 const cadastro = document.querySelector("#cadastro");
+
+// listar publicações
 
 function carregar() {
   const options = { method: "GET" };
@@ -25,6 +28,7 @@ function carregar() {
 
         lista.id = infoPubli.id_post;
         lista.idUsers = infoPubli.id_user;
+        lista.titulo = infoPubli.titulo_post;
 
         lista.querySelector(".titulo_post").innerHTML = infoPubli.titulo_post;
         lista.querySelector(".categoria").innerHTML = "#" + infoPubli.categoria;
@@ -52,10 +56,11 @@ function carregar() {
 
 function montaImg(img) {
   if (img != null) {
-    console.log(`data:image/png;base64,${img}`)
     return `data:image/png;base64,${img}`;
   } else return `./default.png`;
 }
+
+//modal de cadastro
 
 function showModal() {
   let modal = document.querySelector(".modal");
@@ -66,6 +71,8 @@ function excluir() {
   let modal = document.querySelector(".modal");
   modal.style.display = "none";
 }
+
+//criar postagem
 
 function postar() {
   let titulo = document.querySelector("#tituloInp").value;
@@ -96,10 +103,10 @@ function postar() {
     body: JSON.stringify(dados),
   })
     .then((res) => {
-      return res.json(console.log(res));
+      return res.json();
     })
     .then((resp) => {
-      if (resp.login != undefined) {
+      if (resp[0].titulo != undefined) {
         alert("Produto Cadastrado com Sucesso !");
         window.location.reload();
       } else {
@@ -108,18 +115,19 @@ function postar() {
     });
 }
 
+// deletar postagem
+
 function DeletePubli(idUsers, id) {
   idUsers = idUsers.parentNode;
   id = id.parentNode;
   const User = JSON.parse(localStorage.getItem("info"));
 
-  console.log(User.token)
   const options = {
     method: "DELETE",
     headers: {
       authorization: User.token,
     },
-  }
+  };
 
   if (User.role == "ADMIN") {
     if (confirm("confirmar a exclusão? ADM")) {
@@ -165,11 +173,16 @@ const toBase64create = () => {
 //     fr.readAsDataURL(file);
 // }
 
-function showModalComent(id) {
+// modal para comentar
+
+function showModalComent(id, titulo) {
+  titulo = titulo.parentNode.parentNode.parentNode.parentNode;
+  console.log(titulo.titulo);
+
   let modal = document.querySelector(".comentar");
   modal.style.display = "block";
 
-  post(id)
+  post(id);
 }
 
 function excluirModalComent() {
@@ -198,9 +211,6 @@ function post(id) {
         var lista = publi.cloneNode(true);
         lista.classList.remove("model");
 
-        lista.id = infoPubli.id_post;
-        lista.idUsers = infoPubli.id_user;
-
         lista.querySelector(".titulo_post").innerHTML = infoPubli.titulo_post;
         lista.querySelector(".categoria").innerHTML = "#" + infoPubli.categoria;
         lista.querySelector(".sub_categoria").innerHTML =
@@ -208,11 +218,9 @@ function post(id) {
         lista.querySelector(".data_publi").innerHTML = dataFormatada;
         lista.querySelector(".coment").innerHTML = infoPubli.coment;
 
-        // criando comentario 
+        // criando comentario
 
-        criarElement()
-
-
+        // criarElement();
 
         if (infoPubli.foto_publi != null) {
           lista
@@ -222,47 +230,83 @@ function post(id) {
           lista.querySelector(".post").remove();
         }
 
-        if ((infoPubli.curtidas == 1)) {
+        if (infoPubli.curtidas == 1) {
           lista.querySelector(".curtida").src = "../assets/coracaoLikado.png";
         } else {
           lista.querySelector(".curtida").src = "../assets/coracaovazio.png";
         }
         main.appendChild(lista);
-      })
-    })
+      });
+    });
 }
 
+//criar input
 
-function criarElement() {
-  const res = document.createElement("div")
-  const inp = document.createElement("input")
+// function criarElement() {
+//   const res = document.createElement("div");
+//   const inp = document.createElement("input");
 
-  res.innerHTML = inp
+//   res.innerHTML = inp;
 
-  // res.appendChild(inp)
-  // const respubli = document.querySelector('.footer2')
-  document.querySelector('.footer2').appendChild(res)
-}
-
-
+//   // res.appendChild(inp)
+//   // const respubli = document.querySelector('.footer2')
+//   document.querySelector(".footer2").appendChild(res);
+// }
 
 //filtro
 
-var busca = document.querySelector("#lupa")
-var linhas = document.querySelectorAll(".publi")
+// function pegaTitulo() {
+//   const options = { method: "GET" };
 
-busca.addEventListener("keyup", buscar)
+//   fetch(url, options)
+//     .then((resp) => {
+//       return resp.json();
+//     })
+//     .then((info) => {
+//       info.forEach((infoPubli) => {
+//         var busca = document.querySelector("#lupa");
+//         var publi = document.querySelectorAll(".publi");
 
-function buscar() {
-  linhas.forEach((linha) => {
-    console.log()
-    let temp = linha.querySelector('.titulo_post')
-    if (temp != null) {
-      if (linha.innerHTML.toLowerCase().includes(busca.value.toLowerCase())) {
-        linha.style.display = "table-row"
-      } else {
-        linha.style.display = "none"
-      }
-    }
-  })
-}
+//         console.log(infoPubli.titulo_post.toLowerCase().includes(busca.value.toLowerCase()))
+//         publi.forEach((linha) => {
+          
+//           if (infoPubli.titulo_post.toLowerCase().includes(busca.value.toLowerCase()))
+//           {
+//             linha.style.display = "table-row";
+//           } else {
+//             linha.style.display = "aa";
+//           }
+//         });
+//       });
+//     });
+// }
+
+// var busca = document.querySelector("#lupa");
+
+// busca.addEventListener("keyup", filtrar);
+
+// function filtrar() {
+
+// if(){
+// }
+
+// busca.addEventListener("keyup", buscar);
+
+// function buscar(titulo) {
+//   var buscar = document.querySelector("#lupa");
+//   var linhas = document.querySelectorAll(".titulo_post");
+
+//   linhas.forEach((linha) => {
+//     // console.log(linha)
+//     // console.log(temp.value == busca.value)
+//     if (titulo == buscar.value) {
+//       if (linha.innerHTML.toLowerCase().includes(buscar.value.toLowerCase())) {
+//         linha.style.display = "table-row";
+//       } else {
+//         linha.style.display = "none";
+//       }
+//     }
+//   });
+// }
+
+//here go again

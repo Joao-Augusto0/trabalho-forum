@@ -4,8 +4,8 @@ var senha = document.querySelector("#pin");
 function cadastro() {
 
     let dados = {
-        "email": email.value,
-        "senha": senha.value
+        email: email.value,
+        senha: senha.value
     }
 
     const options = {
@@ -18,8 +18,8 @@ function cadastro() {
         .then(res => { return res.json() })
         .then(data => {console.log(data)
             if (data.err === undefined) {
-                if (dados.email == data[0].email && dados.senha == data[0].senha) {
-                    localStorage.setItem("info", JSON.stringify({ "id": data[0].id_user,"role": data[0].role,"token": data[0].token }));
+                if (dados.email == data.email && dados.senha == data.senha) {
+                    localStorage.setItem("info", JSON.stringify({ "id": data.id_user,"nick":data.nick,"role": data.role,"token": data.token }));
                     window.location.href = "../home/index.html";
                 }else{
                     alert("Usuario ou senha incorretos")

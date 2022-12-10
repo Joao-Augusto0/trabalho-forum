@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -25,8 +25,14 @@
         </button>
 
         <div class="lupa">
-            <input id="lupa" type="text">
+            <input onChange="pegaTitulo()" id="lupa" type="text">
         </div>
+        <div class="perfil">
+            <a href="../perfil/index.html"><img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUW-3x2qSP8YVQlKZEYe2tpnV4NA7_7IR26A&usqp=CAU"
+                    alt=""></a>
+        </div>
+
     </header>
 
 
@@ -48,7 +54,8 @@
                         <div class="footer1">
                             <div class="imgs">
                                 <img src="" alt="" class="curtida">
-                                <img onclick="showModalComent(this)" id="comment" src="../assets/comment2.png" alt="">
+                                <img onclick="showModalComent(this,this)" id="comment" src="../assets/comment2.png"
+                                    alt="">
                             </div>
                             <div>
                                 <h2 class="data_publi"></h2>
@@ -112,7 +119,7 @@
         <!-- modal para comentar -->
 
 
-        <div class="comentar">
+        <div class="comentar model">
             <button onclick="excluirModalComent()">x</button>
 
         </div>
