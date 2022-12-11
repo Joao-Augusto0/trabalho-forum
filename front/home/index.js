@@ -194,7 +194,7 @@ document.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
   
     filtroCategoria()
-    filtroSubCategoria()
+    filtroData()
 
     window.location.href = "../home2/index2.html";
   }
@@ -227,28 +227,38 @@ function filtroCategoria() {
   
 }
 
-let subCate = [];
+let data = [];
 
-function filtroSubCategoria() {
+function filtroData() {
   const options = { method: "GET" };
 
-  fetch(urlSubCategoria, options)
+  fetch(url, options)
     .then((response) => response.json())
     .then((res) => {
-      res.forEach((infoSubCategoria) => {
-        var busca = document.querySelector("#lupa");
+      res.forEach((infoPubli) => {
+        var busca = document.querySelector("#lupa")
+        
 
         if (
-          infoSubCategoria.subCategoria
+          infoPubli.data
             .toLowerCase()
             .includes(busca.value.toLowerCase())
         ) {
-          subCate.push(infoSubCategoria.subCategoria);
+          data.push(infoPubli.data);
           localStorage.setItem(
-            "subCategoria",
-            JSON.stringify({ subCategoria: subCate })
+            "data",
+            JSON.stringify({ data: data })
           );
         }
       });
     });
+}
+
+function settingsPerfil(){
+ let modal = document.querySelector('.modalPerfil')
+ modal.style.display = "flex"
+}
+
+function logout(){
+  localStorage.clear()
 }

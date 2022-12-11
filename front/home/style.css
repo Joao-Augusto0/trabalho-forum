@@ -184,10 +184,25 @@ select {
 
 .perfil{
     height: 80px;
+    display: flex;
+    align-items: center;
 }
 
-a>img {
-    margin-right: 5px;
+.perfil> img{
+    margin-right: 7px;
     height:80%;
     border-radius: 100%;
+}
+
+.modalPerfil{
+    display: flex;
+    justify-content:flex-end;
+    display:none;
+}
+
+.opcoes{
+    width: 80px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
 }

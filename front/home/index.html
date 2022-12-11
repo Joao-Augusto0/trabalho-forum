@@ -28,14 +28,19 @@
             <input id="lupa" type="text">
         </div>
         <div class="perfil">
-            <a href="../perfil/index.html"><img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUW-3x2qSP8YVQlKZEYe2tpnV4NA7_7IR26A&usqp=CAU"
-                    alt=""></a>
+            <img onclick="settingsPerfil()" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUW-3x2qSP8YVQlKZEYe2tpnV4NA7_7IR26A&usqp=CAU"
+                alt=""></a>
         </div>
 
     </header>
 
-
+    <!-- modal para o perfil -->
+    <div class="modalPerfil">
+        <div class="opcoes">
+            <a href="../perfil/index.html"><button>perfil</button></a>
+            <a onclick="logout()" href="../login/index.html"><button>sair</button></a>
+        </div>
+    </div>
     <!-- pagina inicial -->
 
 

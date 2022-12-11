@@ -1,17 +1,16 @@
 const Categorias = JSON.parse(localStorage.getItem("categorias"));
-const subCategorias = JSON.parse(localStorage.getItem("subCategoria"));
+const datass = JSON.parse(localStorage.getItem("data"));
 var publi = document.querySelector(".publi");
 var main = document.querySelector(".principal");
-
 const url = "http://localhost:3000/Publicacao";
 
 function carregar() {
-  carregarCategoria()
-  carregarSubCategoria()
-  document.querySelector(".catego").innerHTML = Categorias.categoria
+  carregarCategoria();
+  carregarSubCategoria();
+  document.querySelector(".catego").innerHTML = Categorias.categoria;
 }
 
-function carregarCategoria(){
+function carregarCategoria() {
   let categoria = [];
   categoria.push(Categorias.categoria);
 
@@ -27,8 +26,6 @@ function carregarCategoria(){
         })
         .then((info) => {
           info.forEach((infoPubli) => {
-
-            
             if (cat == infoPubli.categoria) {
               var date = new Date(infoPubli.data);
               let dataFormatada = date.toLocaleDateString("pt-BR", {
@@ -43,7 +40,7 @@ function carregarCategoria(){
               lista.querySelector(".categoria").innerHTML =
                 "#" + infoPubli.categoria;
               lista.querySelector(".sub_categoria").innerHTML =
-                "#" + infoPubli.subCategoria;
+                "#" + infoPubli.data;
               lista.querySelector(".data_publi").innerHTML = dataFormatada;
               lista.querySelector(".coment").innerHTML = infoPubli.coment;
               if (infoPubli.foto_publi != null) {
@@ -69,14 +66,15 @@ function carregarCategoria(){
   });
 }
 
-function carregarSubCategoria(){
-  let subCategoria = [];
-  subCategoria.push(subCategorias.subCategoria);
+function carregarSubCategoria() {
+  let data = [];
+  data.push(datass.data);
 
-  subCategoria.forEach((infoSubCategoria) => {
-    for (let i = 0; i < infoSubCategoria.length; i++) {
-      var subCat = infoSubCategoria[i];
+  data.forEach((infoData) => {
+    for (let i = 0; i < infoData.length; i++) {
+      var subCat = infoData[i];
 
+      console.log(subCat);
       const options = { method: "GET" };
 
       fetch(url, options)
@@ -85,9 +83,7 @@ function carregarSubCategoria(){
         })
         .then((info) => {
           info.forEach((infoPubli) => {
-
-
-            if (subCat == infoPubli.subCategoria) {
+            if (subCat == infoPubli.data) {
               var date = new Date(infoPubli.data);
               let dataFormatada = date.toLocaleDateString("pt-BR", {
                 timeZone: "UTC",
@@ -127,27 +123,28 @@ function carregarSubCategoria(){
   });
 }
 
-function limpar(){
-  localStorage.setItem(
-    "categorias",
-    JSON.stringify({ categoria: " " })
-  )
-  localStorage.setItem(
-    "subCategoria",
-    JSON.stringify({ subCategoria: " " })
-  )
+function limpar() {
+  localStorage.removeItem("categorias");
+  localStorage.removeItem("data");
 
   window.location.href = "../home/index.html";
-
 }
 
-function favoritar(){
+
+
+function favoritar() {
+  
+  console.log(Categorias.categoria)
+
+  // const favorito = JSON.parse(localStorage.getItem("favoritos"));
+
+  // favorito.forEach((infoFav)=>[
+  //   console.log(infoFav)
+  // ])
+  // favorito.push(Categorias.categoria)
 
   localStorage.setItem(
     "favoritos",
-    JSON.stringify({ favotiro:Categorias.categoria})
-  )
-  
-
-
+    JSON.stringify({favorito:Categorias.categoria})
+  );
 }
