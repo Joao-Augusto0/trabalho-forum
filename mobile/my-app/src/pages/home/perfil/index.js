@@ -1,14 +1,49 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Main() {
+
+  const [perfil, setPerfil] = useState([])
+  const [lida, setLida] = useState([]);
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("id");
+      setLida(JSON.parse(value))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  if (lida.length == 0) getData();
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/Usuarios/${lida}`)
+      .then(res => { return res.json() })
+      .then(data => {
+        setPerfil(data)
+      })
+  })
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerStyle}>- ASKTALK -</Text>
       </View>
       <View style={styles.perfil}></View>
-
+      {
+        perfil.map((item, indice) => {
+          return (
+            <View style={styles.perfilInfo}>
+              <Text style={styles.infos}>{item.nick}</Text>
+              <Text style={styles.infos}>{item.nome_user}</Text>
+              <Text style={styles.infos}>{item.email}</Text>
+              <Text style={styles.infos}>{item.telefone}</Text>
+            </View>
+          )
+        })
+      }
       <View>
         <Text style={styles.texto}>Favoritos</Text>
       </View>
@@ -22,12 +57,12 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     alignItems: "center",
   },
-    texto: {
-      marginBottom: 5,
-      fontSize: 22,
-      color: "white",
-      fontFamily: "Arial",
-    },
+  texto: {
+    marginBottom: 5,
+    fontSize: 22,
+    color: "white",
+    fontFamily: "Arial",
+  },
   perfil: {
     height: 150,
     width: 150,
@@ -35,6 +70,13 @@ const styles = StyleSheet.create({
     marginTop: "30px",
     backgroundColor: "#a9a9a9a9",
     justifyContent: "center",
+    textAlign:'center'
+  },
+  infos: {
+    paddingLeft: '2vh',
+    color: 'white',
+    fontSize: '30px',
+    marginTop:'2px'
   },
   header: {
     height: "7vh",
@@ -47,6 +89,11 @@ const styles = StyleSheet.create({
     fontSize: "35px",
     fontFamily: "Arial",
   },
+  perfilInfo: {
+    marginTop: '3vh',
+    justifyContent: 'center',
+    textAlign:'center',
+  }
   //   image: {
   //     height: "20px",
   //     width: "20px",

@@ -1,5 +1,6 @@
 import { StyleSheet, TextInput, View, Image, Text, TouchableOpacity } from "react-native";
 import { useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login({ navigation }) {
 
@@ -13,7 +14,7 @@ export default function Login({ navigation }) {
   }
 
   const userLogin = () => {
-    fetch("http://192.168.0.4:3000/Login"
+    fetch("http://192.168.1.7:3000/Login"
       , {
         method: 'POST',
         headers: {
@@ -28,6 +29,7 @@ export default function Login({ navigation }) {
       })
       .then(data => {
         if (data.email !== undefined) {
+          AsyncStorage.setItem('id', data.id_user)
           navigation.navigate("Home")
         } else {
           alert('Erro')
