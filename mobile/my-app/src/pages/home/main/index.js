@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView } from 'react-native'
 
 export default function Main() {
   const [busca, setBusca] = useState("");
@@ -26,13 +26,13 @@ export default function Main() {
             var dataFormatadata = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
             const base64Image = post.foto_publi;
             return (
-              <View key={index} style={styles.publi}>
-                <Text style={styles.texto}>{post.titulo_post}</Text>
-                <Text style={styles.texto}>{post.coment}</Text>
-                <Image style={styles.image} source={{ uri: `data:image/jpeg;base64,${base64Image}` }} />
-                <Text style={styles.texto}>{post.categoria}</Text>
-                <Text style={styles.texto}>{post.subCategoria}</Text>
-                <Text style={styles.texto}>{dataFormatadata}</Text>
+              <View  key={index} style={styles.publi}>
+                  <Text style={styles.texto}>{post.titulo_post}</Text>
+                  <Text style={styles.texto}>{post.coment}</Text>
+                  <Image style={styles.image} source={{ uri: `data:image/jpeg;base64,${base64Image}` }} />
+                  <Text style={styles.texto}>{post.categoria}</Text>
+                  <Text style={styles.texto}>{post.subCategoria}</Text>
+                  <Text style={styles.texto}>{dataFormatadata}</Text>
               </View>
             )
           }
@@ -79,12 +79,12 @@ const styles = StyleSheet.create({
     height: '20px',
     width: '20px'
   },
-  inp:{
-    height:'45px',
-    width:'320px',
-    marginTop:'2vh',
-    border:'1px solid white',
-    borderRadius:'10px',
-    backgroundColor:"#EFEFEF"
+  inp: {
+    height: '45px',
+    width: '320px',
+    marginTop: '2vh',
+    border: '1px solid white',
+    borderRadius: '10px',
+    backgroundColor: "#EFEFEF"
   }
 })
