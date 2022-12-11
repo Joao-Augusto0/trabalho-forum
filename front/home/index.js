@@ -4,6 +4,8 @@ var publi = document.querySelector(".publi");
 const url = "http://localhost:3000/Publicacao";
 //categorias
 const urlCategoria = "http://localhost:3000/Categorias";
+// subCategoria
+const urlSubCategoria = "http://localhost:3000/SubCategorias";
 
 const cadastro = document.querySelector("#cadastro");
 
@@ -173,73 +175,6 @@ const toBase64create = () => {
 //     fr.readAsDataURL(file);
 // }
 
-// modal para comentar
-
-function showModalComent(id, titulo) {
-  titulo = titulo.parentNode.parentNode.parentNode.parentNode;
-  console.log(titulo.titulo);
-
-  let modal = document.querySelector(".comentar");
-  modal.style.display = "block";
-
-  post(id);
-}
-
-function excluirModalComent() {
-  let modal = document.querySelector(".comentar");
-  modal.style.display = "none";
-}
-
-function post(id) {
-  id = id.parentNode.parentNode.parentNode.parentNode;
-
-  const options = { method: "GET" };
-
-  fetch(url + "/" + id.id, options)
-    .then((resp) => {
-      return resp.json();
-    })
-    .then((info) => {
-      info.forEach((infoPubli) => {
-        var date = new Date(infoPubli.data);
-        let dataFormatada = date.toLocaleDateString("pt-BR", {
-          timeZone: "UTC",
-        });
-
-        //clonar
-
-        var lista = publi.cloneNode(true);
-        lista.classList.remove("model");
-
-        lista.querySelector(".titulo_post").innerHTML = infoPubli.titulo_post;
-        lista.querySelector(".categoria").innerHTML = "#" + infoPubli.categoria;
-        lista.querySelector(".sub_categoria").innerHTML =
-          "#" + infoPubli.subCategoria;
-        lista.querySelector(".data_publi").innerHTML = dataFormatada;
-        lista.querySelector(".coment").innerHTML = infoPubli.coment;
-
-        // criando comentario
-
-        // criarElement();
-
-        if (infoPubli.foto_publi != null) {
-          lista
-            .querySelector(".post")
-            .setAttribute("src", montaImg(infoPubli.foto_publi));
-        } else {
-          lista.querySelector(".post").remove();
-        }
-
-        if (infoPubli.curtidas == 1) {
-          lista.querySelector(".curtida").src = "../assets/coracaoLikado.png";
-        } else {
-          lista.querySelector(".curtida").src = "../assets/coracaovazio.png";
-        }
-        main.appendChild(lista);
-      });
-    });
-}
-
 //criar input
 
 // function criarElement() {
@@ -255,58 +190,65 @@ function post(id) {
 
 //filtro
 
-// function pegaTitulo() {
-//   const options = { method: "GET" };
+document.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+  
+    filtroCategoria()
+    filtroSubCategoria()
 
-//   fetch(url, options)
-//     .then((resp) => {
-//       return resp.json();
-//     })
-//     .then((info) => {
-//       info.forEach((infoPubli) => {
-//         var busca = document.querySelector("#lupa");
-//         var publi = document.querySelectorAll(".publi");
+    window.location.href = "../home2/index2.html";
+  }
+});
 
-//         console.log(infoPubli.titulo_post.toLowerCase().includes(busca.value.toLowerCase()))
-//         publi.forEach((linha) => {
-          
-//           if (infoPubli.titulo_post.toLowerCase().includes(busca.value.toLowerCase()))
-//           {
-//             linha.style.display = "table-row";
-//           } else {
-//             linha.style.display = "aa";
-//           }
-//         });
-//       });
-//     });
-// }
+let cate = [];
 
-// var busca = document.querySelector("#lupa");
+function filtroCategoria() {
+  const options = { method: "GET" };
 
-// busca.addEventListener("keyup", filtrar);
+  fetch(urlCategoria, options)
+    .then((response) => response.json())
+    .then((resp) => {
+      resp.forEach((infoCategoria) => {
+        var busca = document.querySelector("#lupa");
 
-// function filtrar() {
+        if (
+          infoCategoria.categoria
+            .toLowerCase()
+            .includes(busca.value.toLowerCase())
+        ) {
+          cate.push(infoCategoria.categoria);
+          localStorage.setItem(
+            "categorias",
+            JSON.stringify({ categoria: cate })
+          );
+        }
+      });
+    });
+  
+}
 
-// if(){
-// }
+let subCate = [];
 
-// busca.addEventListener("keyup", buscar);
+function filtroSubCategoria() {
+  const options = { method: "GET" };
 
-// function buscar(titulo) {
-//   var buscar = document.querySelector("#lupa");
-//   var linhas = document.querySelectorAll(".titulo_post");
+  fetch(urlSubCategoria, options)
+    .then((response) => response.json())
+    .then((res) => {
+      res.forEach((infoSubCategoria) => {
+        var busca = document.querySelector("#lupa");
 
-//   linhas.forEach((linha) => {
-//     // console.log(linha)
-//     // console.log(temp.value == busca.value)
-//     if (titulo == buscar.value) {
-//       if (linha.innerHTML.toLowerCase().includes(buscar.value.toLowerCase())) {
-//         linha.style.display = "table-row";
-//       } else {
-//         linha.style.display = "none";
-//       }
-//     }
-//   });
-// }
-
-//here go again
+        if (
+          infoSubCategoria.subCategoria
+            .toLowerCase()
+            .includes(busca.value.toLowerCase())
+        ) {
+          subCate.push(infoSubCategoria.subCategoria);
+          localStorage.setItem(
+            "subCategoria",
+            JSON.stringify({ subCategoria: subCate })
+          );
+        }
+      });
+    });
+}

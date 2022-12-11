@@ -1,10 +1,23 @@
-const nickname = JSON.parse(localStorage.getItem("info"))
-console.log(nickname.nick)
+const Favoritos = JSON.parse(localStorage.getItem("favoritos"));
 
-let nick = document.querySelector('#nick_user').innerHTML = nickname.nick
+let fav = [];
 
-nickname.nick
+document.querySelector(".fav").innerHTML = null
 
-function listarFav(){
+fav.push(Favoritos.favotiro[0])
 
+
+
+function listarFav() {
+
+    for(i = 0; i< fav.length; i++) {
+
+        if (document.querySelector(".fav").innerHTML == null) {
+            document.querySelector(".fav").innerHTML = fav[i];
+          } else {
+            document.querySelector(".fav").innerHTML = null
+          }
+    }
+
+  
 }

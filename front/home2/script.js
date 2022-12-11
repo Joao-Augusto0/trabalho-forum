@@ -1,0 +1,153 @@
+const Categorias = JSON.parse(localStorage.getItem("categorias"));
+const subCategorias = JSON.parse(localStorage.getItem("subCategoria"));
+var publi = document.querySelector(".publi");
+var main = document.querySelector(".principal");
+
+const url = "http://localhost:3000/Publicacao";
+
+function carregar() {
+  carregarCategoria()
+  carregarSubCategoria()
+  document.querySelector(".catego").innerHTML = Categorias.categoria
+}
+
+function carregarCategoria(){
+  let categoria = [];
+  categoria.push(Categorias.categoria);
+
+  categoria.forEach((infoCategoria) => {
+    for (i = 0; i < infoCategoria.length; i++) {
+      var cat = infoCategoria[i];
+
+      const options = { method: "GET" };
+
+      fetch(url, options)
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((info) => {
+          info.forEach((infoPubli) => {
+
+            
+            if (cat == infoPubli.categoria) {
+              var date = new Date(infoPubli.data);
+              let dataFormatada = date.toLocaleDateString("pt-BR", {
+                timeZone: "UTC",
+              });
+
+              var lista = publi.cloneNode(true);
+              lista.classList.remove("model");
+
+              lista.querySelector(".titulo_post").innerHTML =
+                infoPubli.titulo_post;
+              lista.querySelector(".categoria").innerHTML =
+                "#" + infoPubli.categoria;
+              lista.querySelector(".sub_categoria").innerHTML =
+                "#" + infoPubli.subCategoria;
+              lista.querySelector(".data_publi").innerHTML = dataFormatada;
+              lista.querySelector(".coment").innerHTML = infoPubli.coment;
+              if (infoPubli.foto_publi != null) {
+                lista
+                  .querySelector(".post")
+                  .setAttribute("src", montaImg(infoPubli.foto_publi));
+              } else {
+                lista.querySelector(".post").remove();
+              }
+
+              if ((infoPubli.curtidas = 1)) {
+                lista.querySelector(".curtida").src =
+                  "../assets/coracaoLikado.png";
+              } else {
+                lista.querySelector(".curtida").src =
+                  "../assets/coracaovazio.png";
+              }
+              main.appendChild(lista);
+            }
+          });
+        });
+    }
+  });
+}
+
+function carregarSubCategoria(){
+  let subCategoria = [];
+  subCategoria.push(subCategorias.subCategoria);
+
+  subCategoria.forEach((infoSubCategoria) => {
+    for (let i = 0; i < infoSubCategoria.length; i++) {
+      var subCat = infoSubCategoria[i];
+
+      const options = { method: "GET" };
+
+      fetch(url, options)
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((info) => {
+          info.forEach((infoPubli) => {
+
+
+            if (subCat == infoPubli.subCategoria) {
+              var date = new Date(infoPubli.data);
+              let dataFormatada = date.toLocaleDateString("pt-BR", {
+                timeZone: "UTC",
+              });
+
+              var lista = publi.cloneNode(true);
+              lista.classList.remove("model");
+
+              lista.querySelector(".titulo_post").innerHTML =
+                infoPubli.titulo_post;
+              lista.querySelector(".categoria").innerHTML =
+                "#" + infoPubli.categoria;
+              lista.querySelector(".sub_categoria").innerHTML =
+                "#" + infoPubli.subCategoria;
+              lista.querySelector(".data_publi").innerHTML = dataFormatada;
+              lista.querySelector(".coment").innerHTML = infoPubli.coment;
+              if (infoPubli.foto_publi != null) {
+                lista
+                  .querySelector(".post")
+                  .setAttribute("src", montaImg(infoPubli.foto_publi));
+              } else {
+                lista.querySelector(".post").remove();
+              }
+
+              if ((infoPubli.curtidas = 1)) {
+                lista.querySelector(".curtida").src =
+                  "../assets/coracaoLikado.png";
+              } else {
+                lista.querySelector(".curtida").src =
+                  "../assets/coracaovazio.png";
+              }
+              main.appendChild(lista);
+            }
+          });
+        });
+    }
+  });
+}
+
+function limpar(){
+  localStorage.setItem(
+    "categorias",
+    JSON.stringify({ categoria: " " })
+  )
+  localStorage.setItem(
+    "subCategoria",
+    JSON.stringify({ subCategoria: " " })
+  )
+
+  window.location.href = "../home/index.html";
+
+}
+
+function favoritar(){
+
+  localStorage.setItem(
+    "favoritos",
+    JSON.stringify({ favotiro:Categorias.categoria})
+  )
+  
+
+
+}
