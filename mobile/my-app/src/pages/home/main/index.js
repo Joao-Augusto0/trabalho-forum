@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native'
 
 export default function Main() {
+  const [busca, setBusca] = useState("");
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
@@ -17,21 +18,24 @@ export default function Main() {
       <View style={styles.header}>
         <Text style={styles.headerStyle}>- ASKTALK -</Text>
       </View>
+      <TextInput style={styles.inp} placeholder='Digite para buscar...' onChangeText={(post) => setBusca(post)} />
       {
         posts.map((post, index) => {
-          var date = new Date(post.data)
-          var dataFormatadata = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-          const base64Image = post.foto_publi;
-          return (
-            <View key={index} style={styles.publi}>
-              <Text style={styles.texto}>{post.titulo_post}</Text>
-              <Text style={styles.texto}>{post.coment}</Text>
-              <Image style={styles.image} source={{ uri: `data:image/jpeg;base64,${base64Image}` }} />
-              <Text style={styles.texto}>{post.categoria}</Text>
-              <Text style={styles.texto}>{post.subCategoria}</Text>
-              <Text style={styles.texto}>{dataFormatadata}</Text>
-            </View>
-          )
+          if (post.subCategoria.toLowerCase().includes(busca.toLowerCase()) || post.categoria.toLowerCase().includes(busca.toLowerCase())) {
+            var date = new Date(post.data)
+            var dataFormatadata = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+            const base64Image = post.foto_publi;
+            return (
+              <View key={index} style={styles.publi}>
+                <Text style={styles.texto}>{post.titulo_post}</Text>
+                <Text style={styles.texto}>{post.coment}</Text>
+                <Image style={styles.image} source={{ uri: `data:image/jpeg;base64,${base64Image}` }} />
+                <Text style={styles.texto}>{post.categoria}</Text>
+                <Text style={styles.texto}>{post.subCategoria}</Text>
+                <Text style={styles.texto}>{dataFormatadata}</Text>
+              </View>
+            )
+          }
         })
       }
     </View>
@@ -74,5 +78,13 @@ const styles = StyleSheet.create({
   image: {
     height: '20px',
     width: '20px'
+  },
+  inp:{
+    height:'45px',
+    width:'320px',
+    marginTop:'2vh',
+    border:'1px solid white',
+    borderRadius:'10px',
+    backgroundColor:"#EFEFEF"
   }
 })
