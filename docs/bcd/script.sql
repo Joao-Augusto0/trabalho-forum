@@ -59,4 +59,5 @@ insert into SubCategoria values
 
 insert into Publicacao values (DEFAULT, "michael jordan",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,null);
 insert into Publicacao values (DEFAULT, "michael jordan",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,null);
-insert into Publicacao values (DEFAULT, "Cruzeiro",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,to_base64(LOAD_FILE("C:/Users/SUPORTE/Desktop/trabalho-forum/front/assets/cruzeiroEscudo.png")));
+insert into Publicacao values (DEFAULT, "Cruzeiro",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,to_base64(LOAD_FILE("C:/Users/SUPORTE/Desktop/trabalho-forum/front/assets/Cristiano-Ronaldo-div.jpg")));
+insert into Publicacao values (DEFAULT, "Cruzeiro",1,"Basquete","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,to_base64(LOAD_FILE("C:/Users/SUPORTE/Desktop/trabalho-forum/front/assets/Cristiano-Ronaldo-div.jpg")));

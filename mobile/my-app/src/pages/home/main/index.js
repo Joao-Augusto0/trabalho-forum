@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native'
 
 export default function Main() {
   const [busca, setBusca] = useState("");
@@ -14,31 +14,33 @@ export default function Main() {
   })
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerStyle}>- ASKTALK -</Text>
-      </View>
-      <TextInput style={styles.inp} placeholder='Digite para buscar...' onChangeText={(post) => setBusca(post)} />
-      {
-        posts.map((post, index) => {
-          if (post.subCategoria.toLowerCase().includes(busca.toLowerCase()) || post.categoria.toLowerCase().includes(busca.toLowerCase())) {
-            var date = new Date(post.data)
-            var dataFormatadata = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-            const base64Image = post.foto_publi;
-            return (
-              <View  key={index} style={styles.publi}>
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.headerStyle}>- ASKTALK -</Text>
+        </View>
+        <TextInput style={styles.inp} placeholder='Digite para buscar...' onChangeText={(post) => setBusca(post)} />
+        {
+          posts.map((post, index) => {
+            if (post.subCategoria.toLowerCase().includes(busca.toLowerCase()) || post.categoria.toLowerCase().includes(busca.toLowerCase())) {
+              var date = new Date(post.data)
+              var dataFormatadata = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+              const base64Image = post.foto_publi;
+              return (
+                <View key={index} style={styles.publi}>
                   <Text style={styles.texto}>{post.titulo_post}</Text>
                   <Text style={styles.texto}>{post.coment}</Text>
-                  <Image style={styles.image} source={{ uri: `data:image/jpeg;base64,${base64Image}` }} />
+                  <Image style={styles.image} source={{ uri: 'data:image/png;base64,' + { base64Image } }} />
                   <Text style={styles.texto}>{post.categoria}</Text>
                   <Text style={styles.texto}>{post.subCategoria}</Text>
                   <Text style={styles.texto}>{dataFormatadata}</Text>
-              </View>
-            )
-          }
-        })
-      }
-    </View>
+                </View>
+              )
+            }
+          })
+        }
+      </View>
+    </ScrollView>
   )
 }
 
@@ -76,8 +78,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial',
   },
   image: {
-    height: '20px',
-    width: '20px'
+    height: '50px',
+    width: '50px'
   },
   inp: {
     height: '45px',
@@ -86,5 +88,16 @@ const styles = StyleSheet.create({
     border: '1px solid white',
     borderRadius: '10px',
     backgroundColor: "#EFEFEF"
-  }
+  },
+  botao: {
+    height: '40px',
+    width: '40px',
+    marginTop: '2vh',
+    border: '1px solid white',
+    borderRadius: '10px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#EFEFEF",
+    fontSize: '35px'
+  },
 })
