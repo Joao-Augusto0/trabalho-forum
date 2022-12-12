@@ -28,19 +28,13 @@
             <input id="lupa" type="text">
         </div>
         <div class="perfil">
-            <img onclick="settingsPerfil()" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUW-3x2qSP8YVQlKZEYe2tpnV4NA7_7IR26A&usqp=CAU"
+            <img onclick="settingsPerfil()"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUW-3x2qSP8YVQlKZEYe2tpnV4NA7_7IR26A&usqp=CAU"
                 alt=""></a>
         </div>
 
     </header>
 
-    <!-- modal para o perfil -->
-    <div class="modalPerfil">
-        <div class="opcoes">
-            <a href="../perfil/index.html"><button>perfil</button></a>
-            <a onclick="logout()" href="../login/index.html"><button>sair</button></a>
-        </div>
-    </div>
     <!-- pagina inicial -->
 
 
@@ -59,8 +53,7 @@
                         <div class="footer1">
                             <div class="imgs">
                                 <img src="" alt="" class="curtida">
-                                <img onclick="showModalComent(this,this)" id="comment" src="../assets/comment2.png"
-                                    alt="">
+                                <img onclick="iniciaResp()" id="comment" src="../assets/comment2.png" alt="">
                             </div>
                             <div>
                                 <h2 class="data_publi"></h2>
@@ -76,8 +69,25 @@
         </div>
 
         <!-- modal para cadastrar -->
+    </main>
+
+    <!-- modal para o perfil -->
 
 
+    <div class="container-perfil">
+        <div class="modalPerfil">
+            <div class="opcoes">
+                <a href="../perfil/index.html"><button>perfil</button></a>
+                <a onclick="logout()" href="../login/index.html"><button>sair</button></a>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <!-- modal para postar -->
+
+    <div class="modal-container">
         <div class="modal">
             <form action="" id="cadastro">
                 <button onclick="excluir()">x</button>
@@ -119,17 +129,41 @@
                 <button onclick="postar()">enviar</button>
             </form>
         </div>
+    </div>
 
 
-        <!-- modal para comentar -->
 
 
-        <div class="comentar model">
-            <button onclick="excluirModalComent()">x</button>
+    <!-- modal para comentar -->
+
+
+    <div class="coment-container">
+        <div class="comenta">
+            <button onclick="fecharResp()" id="excluirModalComent">x</button>
+            <form>
+                <input id="comentario" type="text">
+                <button id="enviarComentario">enviar</button>
+            </form>
 
         </div>
+    </div>
 
-    </main>
+
+    <!-- modal do comentario -->
+    <!-- modal para a 2 resposta -->
+
+    <!-- <div>
+        <p id="comentario"></p>
+        <input id="comentario2" type="text">
+    </div> -->
+
+    <!-- modal da 2 resposta -->
+
+    <!-- <div>
+        <p id="comentario"></p>
+        <input id="comentario2" type="text">
+    </div> -->
+
 </body>
 <script src="index.js"></script>
 

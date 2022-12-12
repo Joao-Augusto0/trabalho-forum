@@ -5,8 +5,11 @@ var main = document.querySelector(".principal");
 const url = "http://localhost:3000/Publicacao";
 
 function carregar() {
-  carregarCategoria();
-  carregarSubCategoria();
+  if (datass == null) {
+    carregarCategoria();
+  } else {
+    carregarData();
+  }
   document.querySelector(".catego").innerHTML = Categorias.categoria;
 }
 
@@ -40,7 +43,7 @@ function carregarCategoria() {
               lista.querySelector(".categoria").innerHTML =
                 "#" + infoPubli.categoria;
               lista.querySelector(".sub_categoria").innerHTML =
-                "#" + infoPubli.data;
+                "#" + infoPubli.subCategoria;
               lista.querySelector(".data_publi").innerHTML = dataFormatada;
               lista.querySelector(".coment").innerHTML = infoPubli.coment;
               if (infoPubli.foto_publi != null) {
@@ -66,7 +69,7 @@ function carregarCategoria() {
   });
 }
 
-function carregarSubCategoria() {
+function carregarData() {
   let data = [];
   data.push(datass.data);
 
@@ -130,11 +133,16 @@ function limpar() {
   window.location.href = "../home/index.html";
 }
 
-
+let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
 function favoritar() {
-  
-  console.log(Categorias.categoria)
+  const fav = document.querySelector(".catego").innerHTML;
+
+
+  favoritos.push(fav)
+
+  localStorage.setItem(
+    "favoritos",JSON.stringify(favoritos))
 
   // const favorito = JSON.parse(localStorage.getItem("favoritos"));
 
@@ -142,9 +150,4 @@ function favoritar() {
   //   console.log(infoFav)
   // ])
   // favorito.push(Categorias.categoria)
-
-  localStorage.setItem(
-    "favoritos",
-    JSON.stringify({favorito:Categorias.categoria})
-  );
 }

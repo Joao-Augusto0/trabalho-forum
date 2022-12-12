@@ -2,9 +2,7 @@ const Favoritos = JSON.parse(localStorage.getItem("favoritos"));
 
 let fav = [];
 
-fav.push(Favoritos.favorito);
-
-console.log(fav)
+fav.push(Favoritos);
 
 function listarFav() {
   fav.forEach((info) => {

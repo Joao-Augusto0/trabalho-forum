@@ -62,18 +62,6 @@ function montaImg(img) {
   } else return `./default.png`;
 }
 
-//modal de cadastro
-
-function showModal() {
-  let modal = document.querySelector(".modal");
-  modal.style.display = "block";
-}
-
-function excluir() {
-  let modal = document.querySelector(".modal");
-  modal.style.display = "none";
-}
-
 //criar postagem
 
 function postar() {
@@ -177,17 +165,6 @@ const toBase64create = () => {
 
 //criar input
 
-// function criarElement() {
-//   const res = document.createElement("div");
-//   const inp = document.createElement("input");
-
-//   res.innerHTML = inp;
-
-//   // res.appendChild(inp)
-//   // const respubli = document.querySelector('.footer2')
-//   document.querySelector(".footer2").appendChild(res);
-// }
-
 //filtro
 
 document.addEventListener("keypress", function (e) {
@@ -261,4 +238,30 @@ function settingsPerfil(){
 
 function logout(){
   localStorage.clear()
+}
+
+// modal postar
+
+
+function showModal() {
+  let modal = document.querySelector(".modal-container");
+  modal.classList.add('mostrar')
+}
+
+function excluir() {
+  let modal = document.querySelector(".modal-container");
+  modal.classList.remove('mostrar')
+}
+
+// modal de comentar
+
+function iniciaResp(){
+ const modal = document.querySelector('.coment-container')
+ modal.classList.add('mostrar')
+}
+
+function fecharResp(){
+  const modal = document.querySelector('.coment-container')
+  modal.classList.remove('mostrar')
+
 }
