@@ -33,10 +33,9 @@ export default function addPubli() {
         curtidas: 1,
         foto_publi: null,
     }
-    if (lida.length == 0) getData();
 
     const addPubli = () => {
-        fetch("http://10.87.207.12:3000/Publicacao"
+        fetch("http://192.168.1.7:3000/Publicacao"
             , {
                 method: 'POST',
                 headers: {
@@ -47,16 +46,18 @@ export default function addPubli() {
             }
         )
             .then(res => {
-              return res.json()
-            })
-            .then(data => {
-                if (data == 201) {
+                if (res == 201) {
                     navigation.navigate("Home")
                 } else {
-                    alert('Erro: '+data)
+                    alert('Erro: ' + res)
                 }
             })
+            .then(data => {
+                return data
+            })
     }
+
+    if (lida.length == 0) getData();
 
     return (
         <ScrollView>

@@ -6,7 +6,7 @@ export default function Main() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3000/Publicacao")
+    fetch("http://192.168.1.7:3000/Publicacao")
       .then(res => { return res.json() })
       .then(data => {
         setPosts(data)
@@ -22,7 +22,7 @@ export default function Main() {
         <TextInput style={styles.inp} placeholder='Digite para buscar...' onChangeText={(post) => setBusca(post)} />
         {
           posts.map((post, index) => {
-            if (post.subCategoria.toLowerCase().includes(busca.toLowerCase()) || post.categoria.toLowerCase().includes(busca.toLowerCase())) {
+            if (post.subCategoria.toLowerCase().includes(busca.toLowerCase()) || post.categoria.toLowerCase().includes(busca.toLowerCase()) || post.data.toLowerCase().includes(busca.toLowerCase())) {
               var date = new Date(post.data)
               var dataFormatadata = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
               const base64Image = post.foto_publi;

@@ -14,7 +14,7 @@ export default function Login({ navigation }) {
   }
 
   const userLogin = () => {
-    fetch("http://10.87.207.12:3000/Login"
+    fetch("http://192.168.1.7:3000/Login"
       , {
         method: 'POST',
         headers: {

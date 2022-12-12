@@ -19,7 +19,7 @@ export default function Main() {
   if (lida.length == 0) getData();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/Usuarios/${lida}`)
+    fetch(`http://192.168.1.7:3000/${lida}`)
       .then(res => { return res.json() })
       .then(data => {
         setPerfil(data)
