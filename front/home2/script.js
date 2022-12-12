@@ -136,18 +136,10 @@ function limpar() {
 let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
 function favoritar() {
-  const fav = document.querySelector(".catego").innerHTML;
-
+  const fav = document.querySelector(".catego").innerHTML
 
   favoritos.push(fav)
 
   localStorage.setItem(
     "favoritos",JSON.stringify(favoritos))
-
-  // const favorito = JSON.parse(localStorage.getItem("favoritos"));
-
-  // favorito.forEach((infoFav)=>[
-  //   console.log(infoFav)
-  // ])
-  // favorito.push(Categorias.categoria)
 }

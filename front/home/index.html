@@ -53,7 +53,7 @@
                         <div class="footer1">
                             <div class="imgs">
                                 <img src="" alt="" class="curtida">
-                                <img onclick="iniciaResp()" id="comment" src="../assets/comment2.png" alt="">
+                                <img onclick="iniciaResp(this)" id="comment" src="../assets/comment2.png" alt="">
                             </div>
                             <div>
                                 <h2 class="data_publi"></h2>
@@ -67,8 +67,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- modal para cadastrar -->
     </main>
 
     <!-- modal para o perfil -->
@@ -82,7 +80,7 @@
             </div>
         </div>
     </div>
-    
+
 
 
     <!-- modal para postar -->
@@ -138,13 +136,22 @@
 
 
     <div class="coment-container">
-        <div class="comenta">
-            <button onclick="fecharResp()" id="excluirModalComent">x</button>
-            <form>
-                <input id="comentario" type="text">
-                <button id="enviarComentario">enviar</button>
-            </form>
-
+        <div class="all">
+            <div class="comenta">
+                <button onclick="fecharResp()" id="excluirModalComent">x</button>
+                <form>
+                    <input  id="comentar" type="text">
+                    <input onclick="enviarResp()" type="button"  id="enviarComentario" placeholder="enviar"></input>
+                </form>
+            </div>
+            <br>
+            <div class="modal-resp model">
+                <p id="comentario"></p>
+                <br>
+                <input id="comentario2" type="text">
+                <br>
+                <br>
+            </div>
         </div>
     </div>
 
@@ -152,10 +159,7 @@
     <!-- modal do comentario -->
     <!-- modal para a 2 resposta -->
 
-    <!-- <div>
-        <p id="comentario"></p>
-        <input id="comentario2" type="text">
-    </div> -->
+
 
     <!-- modal da 2 resposta -->
 

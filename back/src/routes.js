@@ -36,4 +36,9 @@ const Login = require('./controllers/controllerLogin')
 
 router.post('/Login', Login.LoginUser);
 
+const respostas = require("./controllers/controllerResp")
+
+router.post("/Respostas", respostas.createResp)
+router.get("/Respostas", respostas.listarCategoriaResp)
+
 module.exports = router;
