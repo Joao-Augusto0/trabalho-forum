@@ -8,9 +8,11 @@ fav.push(Favoritos);
 function listarFav() {
   fav.forEach((info) => {
     var lista = catFav.cloneNode(true);
+    console.log(info)
     lista.classList.remove("model");
 
-    lista.querySelector("#p").innerHTML = info[0];
+    lista.querySelector("#p").innerHTML = info
+
 
     main.appendChild(lista);
   });

@@ -13,6 +13,7 @@ const cadastro = document.querySelector("#cadastro");
 
 // listar publicações
 
+
 function carregar() {
   const options = { method: "GET" };
 
@@ -33,6 +34,14 @@ function carregar() {
         lista.id = infoPubli.id_post;
         lista.idUsers = infoPubli.id_user;
         lista.titulo = infoPubli.titulo_post;
+
+
+        let idUser = JSON.parse(localStorage.getItem("info"));
+
+        lista.querySelector('#nick').innerHTML += idUser.nick
+
+        console.log (document.querySelector('#nick').innerHTML)
+
 
         lista.querySelector(".titulo_post").innerHTML = infoPubli.titulo_post;
         lista.querySelector(".categoria").innerHTML = "#" + infoPubli.categoria;
