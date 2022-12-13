@@ -1,5 +1,7 @@
 import { StyleSheet, TextInput, View, Image, Text, TouchableOpacity } from "react-native";
 import { useEffect, useState } from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login({ navigation }) {
@@ -69,6 +71,16 @@ export default function Login({ navigation }) {
         >
           <Text style={styles.title}>ENTRAR</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate("cadastro")
+          }}
+        >
+          <Text style={styles.title}>CRIAR CONTA</Text>
+        </TouchableOpacity>
+        
       </View>
     </View>
   );

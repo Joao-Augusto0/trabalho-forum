@@ -24,19 +24,19 @@ function cadastro() {
     body: JSON.stringify(dados),
   }
 
-  if(dados.nome_user != "" && dados.nick != "" && dados.role != "" &&
-  dados.email != "" && dados.senha != ""){
+  if (dados.nome_user != "" && dados.nick != "" && dados.role != "" &&
+    dados.email != "" && dados.senha != "") {
 
     fetch("http://localhost:3000/Usuarios", options)
-    .then((res) => {
-      return res.json(console.log(res));
-    })
-    .then((resp) => {
+      .then((res) => {
+        return res.json(console.log(res));
+      })
+      .then((resp) => {
         console.log(resp)
         alert("Cadastrado com sucesso!");
         window.location.href = "../login/index.html"
-    })
-  }else{
+      })
+  } else {
     alert("Não foi possível cadastrar");
   }
 }
