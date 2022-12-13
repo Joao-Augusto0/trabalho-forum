@@ -9,7 +9,6 @@ export default function addPubli() {
     const getData = async () => {
         try {
             const value = await AsyncStorage.getItem("id");
-            console.log(value);
             setLida(JSON.parse(value))
         } catch (err) {
             console.log(err);
@@ -51,22 +50,21 @@ export default function addPubli() {
             }
         )
             .then(res => {
-                console.log(res)
                 if (res == 201) {
-                    navigation.navigate("Home")
+                    return null
                 } else {
-                    alert('Erro: ' + res)
+                    return null
                 }
             })
             .then(data => {
                 return data
-
             })
     }
 
     return (
         <ScrollView style={styles.scroll}>
             <View style={styles.container}>
+                <Text style={styles.texto}>DIGITE UM TITULO PARA O POST</Text>
                 <TextInput
                     style={styles.input}
                     value={titulo}
@@ -75,6 +73,7 @@ export default function addPubli() {
                     }}
                 ></TextInput>
 
+                <Text style={styles.texto}>ESCOLHA A CATEGORIA DO POST</Text>
                 <TextInput
                     style={styles.input}
                     value={categoria}
@@ -83,6 +82,7 @@ export default function addPubli() {
                     }}
                 ></TextInput>
 
+                <Text style={styles.texto}>ESCOLHA A SUABCATEGORIA DO POST</Text>
                 <TextInput
                     style={styles.input}
                     value={subCategoria}
@@ -91,6 +91,7 @@ export default function addPubli() {
                     }}
                 ></TextInput>
 
+                <Text style={styles.texto}>ESCREVA SEU COMETÁRIO QUE IRÁ APARECER NO POST</Text>
                 <TextInput
                     style={styles.input}
                     value={coment}
@@ -113,27 +114,36 @@ export default function addPubli() {
 }
 
 const styles = StyleSheet.create({
-
-    container: {
+    scroll: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'rgba(191, 233, 246, 0.802)'
+    
+    },
+    container: {
+        backgroundColor: "#3299CC",
         alignItems: 'center',
+        textAlign: 'center',
+        justifyContent: 'center',
+        marginTop: '15vh',
+        border: '1px solid #000066',
+        height: '40vh',
+        width: '45vh'
     },
     texto: {
         marginBottom: 5,
-        fontSize: 22,
+        fontSize: 16,
         color: 'white',
         fontFamily: 'Arial',
     },
     input: {
         backgroundColor: "#fff",
-        margin: 5,
+        marginBottom: '2vh',
+        color: 'black'
     },
     button: {
-        backgroundColor: "#001B6B",
+        backgroundColor: "white",
     },
-    scroll:{
-        flex: 1,
-        backgroundColor:''
+    title: {
+        color: 'black'
     }
 })
