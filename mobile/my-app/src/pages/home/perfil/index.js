@@ -19,7 +19,7 @@ export default function Main() {
   if (lida.length == 0) getData();
 
   useEffect(() => {
-    fetch(`http://10.87.207.12:3000/Usuarios/${lida}`)
+    fetch(`http://192.168.1.7:3000/Usuarios/${lida}`)
       .then(res => { return res.json() })
       .then(data => {
         

@@ -6,7 +6,7 @@ export default function Main() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    fetch("http://10.87.207.12:3000/Publicacao")
+    fetch("http://192.168.1.7:3000/Publicacao")
       .then(res => { return res.json() })
       .then(data => {
         setPosts(data)
