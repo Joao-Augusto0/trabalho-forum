@@ -29,8 +29,10 @@ function cadastro() {
       return res.json(console.log(res));
     })
     .then((resp) => {
+        console.log(resp)
         alert("Cadastrado com sucesso!");
-        window.location.href = "../home/index.html"
+        localStorage.setItem("info", JSON.stringify({ "id":resp.id_user,"nick":resp.nick,"role":resp.role,"token": resp.token }));
+        window.location.href = "../login/index.html"
     })
   }else{
     alert("Não foi possível cadastrar");

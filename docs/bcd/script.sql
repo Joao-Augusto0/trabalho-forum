@@ -45,7 +45,7 @@ create table Resposta(
     id_post integer not null,
     id_user integer not null,
     resp varchar(200) not null,
-    foreign key (id_post) references Publicacao(id_post), 
+    foreign key (id_post) references Publicacao(id_post)on delete cascade, 
     foreign key (id_user) references Usuario(id_user) 
 );
 
@@ -65,13 +65,15 @@ insert into Categoria values
 ("Rugby",FALSE);
 
 insert into SubCategoria values
-("Camisa de time","Futebol", FALSE);
+("Bola","Basquete", FALSE);
 
-insert into Publicacao values (DEFAULT, "michael jordan",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,null);
-insert into Publicacao values (DEFAULT, "michael jordan",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,null);
-<<<<<<< HEAD
-insert into Publicacao values (DEFAULT, "Cruzeiro",1,"Basquete","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,to_base64(LOAD_FILE("C:/Users/SUPORTE/Desktop/trabalho-forum/front/assets/cruzeiroEscudo.png")));
-=======
-insert into Publicacao values (DEFAULT, "Cruzeiro",1,"Futebol","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,to_base64(LOAD_FILE("C:/Users/SUPORTE/Desktop/trabalho-forum/front/assets/Cristiano-Ronaldo-div.jpg")));
-insert into Publicacao values (DEFAULT, "Cruzeiro",1,"Basquete","Camisa de time","simplesmente o melhor jogador de futebol do MUNDO the G.O.A.T","2022-12-01",true,to_base64(LOAD_FILE("C:/Users/SUPORTE/Desktop/trabalho-forum/front/assets/Cristiano-Ronaldo-div.jpg")));
->>>>>>> e078a54ce54b243082ca5c92acf9faca4e88acec
+insert into SubCategoria values
+("estadio","Futebol", FALSE);
+
+insert into SubCategoria values
+("patrocínio","Futebol", FALSE);
+
+insert into SubCategoria values
+("times","Basquete", FALSE);
+
+insert into SubCategoria values("jogadores","Rugby",FALSE)

@@ -143,3 +143,98 @@ function favoritar() {
   localStorage.setItem(
     "favoritos",JSON.stringify(favoritos))
 }
+
+// aaaaaaaaaaaaa
+
+
+// function settingsPerfil() {
+//   let modal = document.querySelector(".modalPerfil");
+//   modal.style.display = "flex";
+// }
+
+// function logout() {
+//   localStorage.clear();
+// }
+
+// // modal postar
+
+// function showModal() {
+//   let modal = document.querySelector(".modal-container");
+//   modal.classList.add("mostrar");
+// }
+
+// function excluir() {
+//   let modal = document.querySelector(".modal-container");
+//   modal.classList.remove("mostrar");
+// }
+
+// // modal de comentar
+
+// function iniciaResp(id) {
+//   const modal = document.querySelector(".coment-container");
+//   modal.classList.add("mostrar");
+
+//   id = id.parentNode.parentNode.parentNode.parentNode;
+//   localStorage.setItem("post", JSON.stringify({ id_post: id.id }));
+
+//   listarResp();
+// }
+
+// function fecharResp() {
+//   const modal = document.querySelector(".coment-container");
+//   modal.classList.remove("mostrar");
+//   window.location.reload(true);
+// }
+
+// // modal com as resposta
+
+// const modalResp = document.querySelector(".modal-resp");
+// const modalComent = document.querySelector(".all");
+
+// function listarResp() {
+//   const options = { method: "GET" };
+
+//   fetch(urlResposta, options)
+//     .then((response) => response.json())
+//     .then((resp) => {
+//       resp.forEach((infoRes) => {
+//         var lista = modalResp.cloneNode(true);
+//         lista.classList.remove("model");
+
+//         lista.querySelector("#comentario").innerHTML = infoRes.resp;
+
+//         modalComent.appendChild(lista);
+//       });
+//     });
+// }
+
+// function enviarResp() {
+//   var idPost = JSON.parse(localStorage.getItem("post"));
+//   var idUser = JSON.parse(localStorage.getItem("info"));
+
+//   let id_post = (document.querySelector("#comentar").innerHTML =idPost.id_post);
+//   let id_user = (document.querySelector("#comentar").innerHTML = idUser.id);
+//   let resp = document.querySelector("#comentar").value;
+
+//   let dados = {
+//     id_post: id_post,
+//     id_user: id_user,
+//     resp: resp,
+//   };
+
+//   const options = {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(dados),
+//   };
+
+//   console.log(id_post);
+
+//   if (dados.resp != "") {
+//     window.location.reload(true);
+
+//     fetch(urlResposta, options)
+//       .then((response) => response.json())
+//       .then((resp) => {});
+//   }
+// }

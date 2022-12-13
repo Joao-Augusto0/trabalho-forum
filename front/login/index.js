@@ -16,7 +16,7 @@ function cadastro() {
 
     fetch('http://localhost:3000/Login', options)
         .then(res => { return res.json() })
-        .then(data => {console.log(data)
+        .then(data => {
             if (data.err === undefined) {
                 if (dados.email == data.email && dados.senha == data.senha) {
                     localStorage.setItem("info", JSON.stringify({ "id": data.id_user,"nick":data.nick,"role": data.role,"token": data.token }));

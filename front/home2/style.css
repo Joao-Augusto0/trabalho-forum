@@ -18,7 +18,11 @@ header {
     display: flex;
     align-items: center;
     height: 13vh;
-    background-color: rgb(22, 3, 128);
+    background-image: linear-gradient(
+        43deg,
+        rgb(7, 2, 39) 46%,
+        rgb(13, 28, 68) 100%
+    );
     justify-content: space-between;
     color: white;
 }

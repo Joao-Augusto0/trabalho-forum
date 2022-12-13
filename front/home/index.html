@@ -88,29 +88,28 @@
     <div class="modal-container">
         <div class="modal">
             <form action="" id="cadastro">
-                <button onclick="excluir()">x</button>
+                <button id="btnModal" onclick="excluir()">x</button>
 
 
                 <label for="">titulo:</label>
                 <input id="tituloInp" name="titulo" type="text">
 
-                <label for="">id_user:</label>
-                <input id="id_user" name="titulo" type="number">
-
                 <label for="">categoria</label>
                 <select id="CategoriaInp" name="categoria">
                     <option value="Basquete">Basquete</option>
                     <option value="Futebol">Futebol</option>
-                    <option value="Baisebol">Baisebol</option>
-                    <option value="Tenis de Mesa">Tenis de Mesa</option>
+                    <option value="Hockey no gelo">Hockey no gelo</option>
+                    <option value="Rugby">Rugby</option>
+                    <option value="Voleibol">Voleibol</option>
                 </select>
 
                 <label for="">subCategoria</label>
                 <select id="subCategoriaInp" name="sub_categoria">
                     <option value="Bola">Bola</option>
                     <option value="Camisa de Time">Camisa de Time</option>
-                    <option value="Estadio">Estadio</option>
-                    <option value="Patrocinio">Patrocinio</option>
+                    <option value="Patrocinio">Patrocínio</option>
+                    <option value="Times">Times</option>
+                    <option value="Jogadores">Jogadores</option>
                 </select>
 
                 <label for="">Coment:</label>
@@ -124,7 +123,10 @@
                 <label for="">foto</label>
                 <input id="fotoPubliInp" name="foto_publi" type="file">
 
-                <button onclick="postar()">enviar</button>
+                <div class="btnFechar">
+                    <button id="envModal" onclick="postar()">enviar</button>
+                </div>
+                
             </form>
         </div>
     </div>
@@ -137,11 +139,11 @@
 
     <div class="coment-container">
         <div class="all">
+            <button onclick="fecharResp()" id="excluirModalComent">x</button>
             <div class="comenta">
-                <button onclick="fecharResp()" id="excluirModalComent">x</button>
                 <form>
-                    <input  id="comentar" type="text">
-                    <input onclick="enviarResp()" type="button"  id="enviarComentario" placeholder="enviar"></input>
+                    <input id="comentar" type="text">
+                    <button onclick="enviarResp()" id="enviarComentario">enviar</button>
                 </form>
             </div>
             <br>

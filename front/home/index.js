@@ -7,9 +7,7 @@ const urlCategoria = "http://localhost:3000/Categorias";
 // subCategoria
 const urlSubCategoria = "http://localhost:3000/SubCategorias";
 // resposta
-const urlResposta = "http://localhost:3000/Respostas"
-
-
+const urlResposta = "http://localhost:3000/Respostas";
 
 const cadastro = document.querySelector("#cadastro");
 
@@ -69,8 +67,10 @@ function montaImg(img) {
 //criar postagem
 
 function postar() {
+  let idUser = JSON.parse(localStorage.getItem("info"));
+
   let titulo = document.querySelector("#tituloInp").value;
-  let id_user = document.querySelector("#id_user").value;
+  let id_user = (document.querySelector("#tituloInp").innerHTML = idUser.id);
   let categoria = document.querySelector("#CategoriaInp").value;
   let subCategoria = document.querySelector("#subCategoriaInp").value;
   let coment = document.querySelector("#comentInp").value;
@@ -89,8 +89,10 @@ function postar() {
     foto_publi: foto_publi,
   };
 
+  console.log(categoria)
+
   fetch(url, {
-    method: "Post",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
@@ -100,12 +102,7 @@ function postar() {
       return res.json();
     })
     .then((resp) => {
-      if (resp[0].titulo != undefined) {
-        alert("Produto Cadastrado com Sucesso !");
-        window.location.reload();
-      } else {
-        alert("Não foi possivél cadastrar o produto");
-      }
+      // window.location.reload();
     });
 }
 
@@ -116,10 +113,11 @@ function DeletePubli(idUsers, id) {
   id = id.parentNode;
   const User = JSON.parse(localStorage.getItem("info"));
 
+  console.log(idUsers.idUsers);
   const options = {
     method: "DELETE",
     headers: {
-      authorization: User.token,
+      Authorization: User.token,
     },
   };
 
@@ -128,7 +126,6 @@ function DeletePubli(idUsers, id) {
       fetch(url + "/" + "adm/" + id.id, options)
         .then((res) => res.status)
         .then((res) => {
-          console.log(res);
           window.location.reload();
         })
         .catch((err) => console.error(err));
@@ -157,25 +154,12 @@ const toBase64create = () => {
   fr.readAsDataURL(file);
 };
 
-// const toBase64update = () => {
-//     let file = document.querySelector("#fileUpdate")['files'][0];
-//     let fr = new FileReader();
-//     fr.onload = function () {
-//         foto_userBase64 = fr.result.replace("data:", "").replace(/^.+,/, "");
-//         alteracao.imagem.src = `data:image/png;base64,${foto_userBase64}`;
-//     }
-//     fr.readAsDataURL(file);
-// }
-
-//criar input
-
 //filtro
 
 document.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
-  
-    filtroCategoria()
-    filtroData()
+    filtroCategoria();
+    filtroData();
 
     window.location.href = "../home2/index2.html";
   }
@@ -205,7 +189,6 @@ function filtroCategoria() {
         }
       });
     });
-  
 }
 
 let data = [];
@@ -217,124 +200,107 @@ function filtroData() {
     .then((response) => response.json())
     .then((res) => {
       res.forEach((infoPubli) => {
-        var busca = document.querySelector("#lupa")
-        
+        var busca = document.querySelector("#lupa");
 
-        if (
-          infoPubli.data
-            .toLowerCase()
-            .includes(busca.value.toLowerCase())
-        ) {
+        if (infoPubli.data.toLowerCase().includes(busca.value.toLowerCase())) {
           data.push(infoPubli.data);
-          localStorage.setItem(
-            "data",
-            JSON.stringify({ data: data })
-          );
+          localStorage.setItem("data", JSON.stringify({ data: data }));
         }
       });
     });
 }
 
-function settingsPerfil(){
- let modal = document.querySelector('.modalPerfil')
- modal.style.display = "flex"
+function settingsPerfil() {
+  let modal = document.querySelector(".modalPerfil");
+  modal.style.display = "flex";
 }
 
-function logout(){
-  localStorage.clear()
+function logout() {
+  localStorage.clear();
 }
 
 // modal postar
 
-
 function showModal() {
   let modal = document.querySelector(".modal-container");
-  modal.classList.add('mostrar')
+  modal.classList.add("mostrar");
 }
 
 function excluir() {
   let modal = document.querySelector(".modal-container");
-  modal.classList.remove('mostrar')
+  modal.classList.remove("mostrar");
 }
 
 // modal de comentar
 
-function iniciaResp(id){
- const modal = document.querySelector('.coment-container')
- modal.classList.add('mostrar')
+function iniciaResp(id) {
+  const modal = document.querySelector(".coment-container");
+  modal.classList.add("mostrar");
 
- id = id.parentNode.parentNode.parentNode.parentNode
-localStorage.setItem("post", JSON.stringify({id_post:id.id}))
+  id = id.parentNode.parentNode.parentNode.parentNode;
+  localStorage.setItem("post", JSON.stringify({ id_post: id.id }));
 
- listarResp()
+  listarResp(id);
 }
 
-
-
-function fecharResp(){
-  const modal = document.querySelector('.coment-container')
-  modal.classList.remove('mostrar')
-  window.location.reload(true)
+function fecharResp() {
+  const modal = document.querySelector(".coment-container");
+  modal.classList.remove("mostrar");
+  window.location.reload(true);
 }
-
 
 // modal com as resposta
 
-const modalResp = document.querySelector('.modal-resp')
-const modalComent = document.querySelector('.all')
+const modalResp = document.querySelector(".modal-resp");
+const modalComent = document.querySelector(".all");
 
-function listarResp(){ 
-
-  const options = {method: 'GET'};
+function listarResp(id) {
+  const options = { method: "GET" };
 
   fetch(urlResposta, options)
-    .then(response => response.json())
-    .then((resp) =>{
-      resp.forEach((infoRes) =>{
-        var lista = modalResp.cloneNode(true)
-        lista.classList.remove("model")
+    .then((response) => response.json())
+    .then((resp) => {
+      resp.forEach((infoRes) => {
+        if (id.id == infoRes.id_post) {
+          var lista = modalResp.cloneNode(true);
+          lista.classList.remove("model");
 
-        lista.querySelector("#comentario").innerHTML =  infoRes.resp
+          lista.querySelector("#comentario").innerHTML = infoRes.resp;
 
-        modalComent.appendChild(lista)
-      })
-    } )
-
+          modalComent.appendChild(lista);
+        }
+      });
+    });
 }
 
-function enviarResp(){
+function enviarResp() {
+  var idPost = JSON.parse(localStorage.getItem("post"));
+  var idUser = JSON.parse(localStorage.getItem("info"));
 
-  var idPost = JSON.parse(localStorage.getItem('post'))
-  var idUser = JSON.parse(localStorage.getItem('info'))
-
-
-  let id_post = document.querySelector('#comentar').innerHTML = idPost.id_post
-  let id_user = document.querySelector('#comentar').innerHTML = idUser.id
-  let resp = document.querySelector('#comentar').value
+  let id_post = (document.querySelector("#comentar").innerHTML =
+    idPost.id_post);
+  let id_user = (document.querySelector("#comentar").innerHTML = idUser.id);
+  let resp = document.querySelector("#comentar").value;
 
   let dados = {
     id_post: id_post,
-    id_user:id_user,
-    resp: resp
-  }
+    id_user: id_user,
+    resp: resp,
+  };
 
   const options = {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(dados)
-  }
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dados),
+  };
 
-  console.log(id_post)
+  console.log(id_post);
 
-  if(dados.resp  != ""){
-
-    window.location.reload(true)
+  if (dados.resp != "") {
+    window.location.reload(true);
 
     fetch(urlResposta, options)
-    .then(response => response.json())
-    .then(resp => {
-
-    })
-
+      .then((response) => response.json())
+      .then((resp) => {});
   }
 }

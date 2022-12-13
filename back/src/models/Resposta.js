@@ -3,7 +3,7 @@ const toCreateResp = (model) => {
   }
   
   const toReadAllResp = () => {
-    return "SELECT * FROM Resposta";
+    return "SELECT * FROM Resposta order by id_resp desc";
   }
 
   
