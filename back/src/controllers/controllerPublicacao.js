@@ -12,6 +12,7 @@ const createPublicacao = async (req, res) => {
                 if (err == null) {
                     res.status(201).json(result).end();
                 } else {
+                    console.log(err)
                     res.status(500).json(err).end();
                 }
             });

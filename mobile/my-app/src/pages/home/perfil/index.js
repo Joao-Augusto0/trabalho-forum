@@ -19,9 +19,10 @@ export default function Main() {
   if (lida.length == 0) getData();
 
   useEffect(() => {
-    fetch(`http://192.168.1.7:3000/${lida}`)
+    fetch(`http://10.87.207.12:3000/Usuarios/${lida}`)
       .then(res => { return res.json() })
       .then(data => {
+        
         setPerfil(data)
       })
   })
@@ -54,13 +55,13 @@ export default function Main() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: 'rgba(191, 233, 246, 0.802)',
     alignItems: "center",
   },
   texto: {
     marginBottom: 5,
     fontSize: 22,
-    color: "white",
+    color: "black",
     fontFamily: "Arial",
   },
   perfil: {
@@ -70,29 +71,31 @@ const styles = StyleSheet.create({
     marginTop: "30px",
     backgroundColor: "#a9a9a9a9",
     justifyContent: "center",
-    textAlign:'center'
+    textAlign: 'center'
   },
   infos: {
     paddingLeft: '2vh',
-    color: 'white',
+    color: 'black',
     fontSize: '30px',
-    marginTop:'2px'
+    marginTop: '2px'
   },
   header: {
-    height: "7vh",
-    width: "100%",
-    backgroundColor: "#a9a9a9",
-    alignItems: "center",
-    justifyContent: "center",
+    height: '7vh',
+    width: '100%',
+    backgroundColor: 'rgb(7, 2, 39)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'white'
   },
   headerStyle: {
-    fontSize: "35px",
-    fontFamily: "Arial",
+    fontSize: '35px',
+    fontFamily: 'Arial',
+    color: 'white',
   },
   perfilInfo: {
     marginTop: '3vh',
     justifyContent: 'center',
-    textAlign:'center',
+    textAlign: 'center',
   }
   //   image: {
   //     height: "20px",

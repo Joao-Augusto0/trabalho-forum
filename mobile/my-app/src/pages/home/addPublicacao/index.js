@@ -1,30 +1,33 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function addPubli() {
-
-    const [titulo_post, setTitulo_post] = useState('');
-    const [categoria, setCategoria] = useState('');
-    const [subCategoria, setSubCategoria] = useState('');
-    const [coment, setComent] = useState('');
 
     const [lida, setLida] = useState([]);
 
     const getData = async () => {
         try {
-            const value2 = await AsyncStorage.getItem("id");
-            setLida(JSON.parse(value2))
+            const value = await AsyncStorage.getItem("id");
+            console.log(value);
+            setLida(JSON.parse(value))
         } catch (err) {
             console.log(err);
         }
     }
 
+    if (lida.length == 0) getData();
+
+    const [titulo, setTitulo_post] = useState("")
+    const [categoria, setCategoria] = useState("");
+    const [subCategoria, setSubCategoria] = useState("");
+    const [coment, setComent] = useState("");
+
     let data = new Date();
     let dataFormatada = (data.getFullYear() + "-" + ((data.getMonth() + 1)) + "-" + (data.getDate()));
-    console.log(dataFormatada)
 
-    let dados = {
-        titulo_post: titulo_post,
+    var dados = {
+        titulo_post: titulo,
         id_user: lida,
         categoria: categoria,
         subCategoria: subCategoria,
@@ -34,8 +37,10 @@ export default function addPubli() {
         foto_publi: null,
     }
 
+    console.log(dados)
+
     const addPubli = () => {
-        fetch("http://192.168.1.7:3000/Publicacao"
+        fetch("http://10.87.207.12:3000/Publicacao"
             , {
                 method: 'POST',
                 headers: {
@@ -46,6 +51,7 @@ export default function addPubli() {
             }
         )
             .then(res => {
+                console.log(res)
                 if (res == 201) {
                     navigation.navigate("Home")
                 } else {
@@ -54,17 +60,16 @@ export default function addPubli() {
             })
             .then(data => {
                 return data
+
             })
     }
 
-    if (lida.length == 0) getData();
-
     return (
-        <ScrollView>
+        <ScrollView style={styles.scroll}>
             <View style={styles.container}>
                 <TextInput
                     style={styles.input}
-                    value={titulo_post}
+                    value={titulo}
                     onChangeText={(value) => {
                         setTitulo_post(value);
                     }}
@@ -127,4 +132,8 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: "#001B6B",
     },
+    scroll:{
+        flex: 1,
+        backgroundColor:''
+    }
 })

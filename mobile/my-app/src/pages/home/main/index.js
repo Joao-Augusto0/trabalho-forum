@@ -6,7 +6,7 @@ export default function Main() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    fetch("http://192.168.1.7:3000/Publicacao")
+    fetch("http://10.87.207.12:3000/Publicacao")
       .then(res => { return res.json() })
       .then(data => {
         setPosts(data)
@@ -22,9 +22,9 @@ export default function Main() {
         <TextInput style={styles.inp} placeholder='Digite para buscar...' onChangeText={(post) => setBusca(post)} />
         {
           posts.map((post, index) => {
-            if (post.subCategoria.toLowerCase().includes(busca.toLowerCase()) || post.categoria.toLowerCase().includes(busca.toLowerCase()) || post.data.toLowerCase().includes(busca.toLowerCase())) {
-              var date = new Date(post.data)
-              var dataFormatadata = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+            var date = new Date(post.data)
+            var dataFormatadata = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+            if (post.subCategoria.toLowerCase().includes(busca.toLowerCase()) || post.categoria.toLowerCase().includes(busca.toLowerCase()) || dataFormatadata.toLowerCase().includes(busca.toLowerCase())) {
               const base64Image = post.foto_publi;
               return (
                 <View key={index} style={styles.publi}>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(191, 233, 246, 0.802)',
     alignItems: 'center',
   },
   texto: {
@@ -62,20 +62,22 @@ const styles = StyleSheet.create({
     width: '370px',
     border: '1px solid white',
     marginTop: '30px',
-    backgroundColor: '#a9a9a9a9',
+    backgroundColor: 'rgb(7, 2, 30)',
     textAlign: 'center',
     justifyContent: 'center'
   },
   header: {
     height: '7vh',
     width: '100%',
-    backgroundColor: '#a9a9a9',
+    backgroundColor: 'rgb(7, 2, 39)',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    color: 'white'
   },
   headerStyle: {
     fontSize: '35px',
     fontFamily: 'Arial',
+    color: 'white',
   },
   image: {
     height: '50px',
