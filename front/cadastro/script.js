@@ -6,10 +6,13 @@ var Senha = document.querySelector("#Senha");
 var telefone = document.querySelector("#telefone");
 
 function cadastro() {
+
+  let roles = "usuario"
+
   let dados = {
     nome_user: usuario.value,
     nick: nickname.value,
-    role: role.value,
+    role: roles,
     email: Email.value,
     senha: Senha.value,
     telefone: telefone.value,

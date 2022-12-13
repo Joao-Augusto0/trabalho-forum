@@ -36,11 +36,15 @@ function carregar() {
         lista.titulo = infoPubli.titulo_post;
 
 
-        let idUser = JSON.parse(localStorage.getItem("info"));
+        // let idPost = JSON.parse(localStorage.getItem("id_postador"));
+        // let idUser = JSON.parse(localStorage.getItem("info"));
+        // console.log(lista.idUsers)
 
-        lista.querySelector('#nick').innerHTML += idUser.nick
 
-        console.log (document.querySelector('#nick').innerHTML)
+        //   lista.querySelector('#nick').innerHTML += idUser.nick
+
+
+
 
 
         lista.querySelector(".titulo_post").innerHTML = infoPubli.titulo_post;
@@ -83,9 +87,12 @@ function postar() {
   let categoria = document.querySelector("#CategoriaInp").value;
   let subCategoria = document.querySelector("#subCategoriaInp").value;
   let coment = document.querySelector("#comentInp").value;
-  let dataInp = document.querySelector("#dataInp").value;
+
   let curtidas = document.querySelector("#curtidas").value;
   let foto_publi = document.querySelector("#fotoPubliInp").value;
+
+  let data = new Date();
+  let dataFormatada = (data.getFullYear() + "-" + ((data.getMonth() + 1)) + "-" + (data.getDate()));
 
   let dados = {
     titulo_post: titulo,
@@ -93,10 +100,14 @@ function postar() {
     categoria: categoria,
     subCategoria: subCategoria,
     coment: coment,
-    data: dataInp,
+    data: dataFormatada,
     curtidas: curtidas,
     foto_publi: foto_publi,
   };
+
+  console.log(dados)
+
+  localStorage.setItem("postador", JSON.stringify({ id: idUser.id, nick:idUser.nick }));
 
   console.log(categoria)
 
@@ -310,6 +321,6 @@ function enviarResp() {
 
     fetch(urlResposta, options)
       .then((response) => response.json())
-      .then((resp) => {});
+      .then((resp) => { });
   }
 }

@@ -44,7 +44,7 @@
                 <div class="publi model">
                     <button onclick="DeletePubli(this,this)">x</button>
                     <div class="publiHeader">
-                        <p id="nick">@</p>
+                        <p id="nick"></p>
                         <h2 class="titulo_post"></h2>
                         <img src="" alt="" class="post">
                         <h2 class="coment"></h2>
@@ -93,7 +93,7 @@
 
 
                 <label for="">titulo:</label>
-                <input id="tituloInp" name="titulo" type="text">
+                <input onclick="postar()" id="tituloInp" name="titulo" type="text">
 
                 <label for="">categoria</label>
                 <select id="CategoriaInp" name="categoria">
@@ -115,9 +115,7 @@
 
                 <label for="">Coment:</label>
                 <input id="comentInp" name="coment" type="text">
-                <label for="">Data</label>
-                <input type="datetime-local" id="dataInp">
-
+            
                 <label for="">curtidas</label>
                 <input type="number" id="curtidas">
 
