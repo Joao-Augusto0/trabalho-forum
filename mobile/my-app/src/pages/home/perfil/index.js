@@ -19,7 +19,7 @@ export default function Main() {
   if (lida.length == 0) getData();
 
   useEffect(() => {
-    fetch(`http://192.168.1.7:3000/Usuarios/${lida}`)
+    fetch(`http://10.87.207.12:3000/Usuarios/${lida}`)
       .then(res => { return res.json() })
       .then(data => {
         
@@ -37,17 +37,14 @@ export default function Main() {
         perfil.map((item, indice) => {
           return (
             <View style={styles.perfilInfo}>
-              <Text style={styles.infos}>{item.nick}</Text>
-              <Text style={styles.infos}>{item.nome_user}</Text>
-              <Text style={styles.infos}>{item.email}</Text>
-              <Text style={styles.infos}>{item.telefone}</Text>
+              <Text style={styles.infos}>Nick: {item.nick}</Text>
+              <Text style={styles.infos}>Nome: {item.nome_user}</Text>
+              <Text style={styles.infos}>Email: {item.email}</Text>
+              <Text style={styles.infos}>Telefone: {item.telefone}</Text>
             </View>
           )
         })
       }
-      <View>
-        <Text style={styles.texto}>Favoritos</Text>
-      </View>
     </View>
   );
 }

@@ -39,7 +39,7 @@ export default function addPubli() {
     console.log(dados)
 
     const addPubli = () => {
-        fetch("http://192.168.1.7:3000/Publicacao"
+        fetch("http://10.87.207.12:3000/Publicacao"
             , {
                 method: 'POST',
                 headers: {
@@ -50,10 +50,10 @@ export default function addPubli() {
             }
         )
             .then(res => {
-                if (res == 201) {
-                    return navigation.navigate("Home")
+                if (res.status == 201) {
+                    return alert("publicado")
                 } else {
-                    return navigation.navigate("Home")
+                    return alert("erro ao publicar")
                 }
             })
             

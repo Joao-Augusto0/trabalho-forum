@@ -1,7 +1,5 @@
 import { StyleSheet, TextInput, View, Image, Text, TouchableOpacity } from "react-native";
-import { useEffect, useState } from 'react'
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login({ navigation }) {
@@ -16,7 +14,7 @@ export default function Login({ navigation }) {
   }
 
   const userLogin = () => {
-    fetch("http://192.168.1.7:3000/Login"
+    fetch("http://10.87.207.12:3000/Login"
       , {
         method: 'POST',
         headers: {
@@ -73,14 +71,14 @@ export default function Login({ navigation }) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.button}
+          style={styles.button2}
           onPress={() => {
             navigation.navigate("cadastro")
           }}
         >
-          <Text style={styles.title}>CRIAR CONTA</Text>
+          <Text style={styles.title2}>CRIAR CONTA</Text>
         </TouchableOpacity>
-        
+
       </View>
     </View>
   );
@@ -112,10 +110,13 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   title2: {
-    color: "#070227",
-    margin: 10
+    color: "#fff",
   },
   button: {
+    backgroundColor: "#001B6B",
+  },
+  button2: {
+    marginTop: '10px',
     backgroundColor: "#001B6B",
   },
 });

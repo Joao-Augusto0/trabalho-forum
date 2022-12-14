@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default function addPubli() {
 
@@ -25,7 +23,7 @@ export default function addPubli() {
     console.log(dados)
 
     const addConta = () => {
-        fetch("http://192.168.1.7:3000/Usuarios"
+        fetch("http://10.87.207.12:3000/Usuarios"
             , {
                 method: 'POST',
                 headers: {
@@ -36,15 +34,10 @@ export default function addPubli() {
             }
         )
             .then(res => {
-                return res.json()
+               return res.json()
             })
             .then(data => {
-                if (data != undefined) {
-                    alert('CADASTRO FEITO')
-                    navigation.navigate("Login")
-                } else {
-                    return data
-                }
+                return data
             })
     }
 

@@ -10,7 +10,7 @@ const Tab = createMaterialTopTabNavigator();
 export default function App() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={main} />
+      <Tab.Screen name="main" component={main} />
       <Tab.Screen name="Perfil" component={perfil} />
       <Tab.Screen name="Criar publicação" component={addPubli} />
     </Tab.Navigator>
