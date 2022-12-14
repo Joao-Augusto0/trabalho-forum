@@ -52,7 +52,7 @@ create table Resposta(
 
 insert into Usuario values
 (default,"adrianalemos","Adrian","ADMIN","josefina@gmail","1234","19987428374",null);
-
+    
 insert into Categoria values
 ("Futebol",FALSE);
 insert into Categoria values

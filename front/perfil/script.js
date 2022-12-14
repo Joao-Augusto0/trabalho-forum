@@ -1,7 +1,10 @@
 const Favoritos = JSON.parse(localStorage.getItem("favoritos"));
+const User = JSON.parse(localStorage.getItem("info"));
 const catFav = document.querySelector(".catFav");
 const main = document.querySelector("main");
 let fav = [];
+
+document.querySelector('#nick_user').innerHTML = User.nick
 
 fav.push(Favoritos);
 
@@ -16,16 +19,4 @@ function listarFav() {
 
     main.appendChild(lista);
   });
-}
-
-function irCategoria() {
-  // fav.forEach((info) => {
-  // let p = document.querySelector("#p").innerHTML = info
-  // if(p[0] == "Basquete" || p[1] == "Basquete" || p[2] == "Basquete" || p[3] =="Basquete" || p[4] == "Basquete" ){
-    
-  // }
-  window.location.href = "../home2/index2.html"
-  console.log(p[0])
-  // })
-  // 
 }

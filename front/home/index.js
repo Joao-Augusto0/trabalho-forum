@@ -13,7 +13,6 @@ const cadastro = document.querySelector("#cadastro");
 
 // listar publicações
 
-
 function carregar() {
   const options = { method: "GET" };
 
@@ -35,17 +34,11 @@ function carregar() {
         lista.idUsers = infoPubli.id_user;
         lista.titulo = infoPubli.titulo_post;
 
-
         // let idPost = JSON.parse(localStorage.getItem("id_postador"));
         // let idUser = JSON.parse(localStorage.getItem("info"));
         // console.log(lista.idUsers)
 
-
         //   lista.querySelector('#nick').innerHTML += idUser.nick
-
-
-
-
 
         lista.querySelector(".titulo_post").innerHTML = infoPubli.titulo_post;
         lista.querySelector(".categoria").innerHTML = "#" + infoPubli.categoria;
@@ -92,7 +85,8 @@ function postar() {
   let foto_publi = document.querySelector("#fotoPubliInp").value;
 
   let data = new Date();
-  let dataFormatada = (data.getFullYear() + "-" + ((data.getMonth() + 1)) + "-" + (data.getDate()));
+  let dataFormatada =
+    data.getFullYear() + "-" + (data.getMonth() + 1) + "-" + data.getDate();
 
   let dados = {
     titulo_post: titulo,
@@ -105,11 +99,14 @@ function postar() {
     foto_publi: foto_publi,
   };
 
-  console.log(dados)
+  console.log(dados);
 
-  localStorage.setItem("postador", JSON.stringify({ id: idUser.id, nick:idUser.nick }));
+  localStorage.setItem(
+    "postador",
+    JSON.stringify({ id: idUser.id, nick: idUser.nick })
+  );
 
-  console.log(categoria)
+  console.log(categoria);
 
   fetch(url, {
     method: "POST",
@@ -244,6 +241,13 @@ function logout() {
 function showModal() {
   let modal = document.querySelector(".modal-container");
   modal.classList.add("mostrar");
+
+  let idUser = JSON.parse(localStorage.getItem("info"));
+
+  if (idUser == null) {
+    alert('voce precisa estar logado')
+    window.location.href = "../login/index.html";
+  }
 }
 
 function excluir() {
@@ -321,6 +325,6 @@ function enviarResp() {
 
     fetch(urlResposta, options)
       .then((response) => response.json())
-      .then((resp) => { });
+      .then((resp) => {});
   }
 }
