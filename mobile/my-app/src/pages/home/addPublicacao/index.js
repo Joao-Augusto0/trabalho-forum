@@ -51,11 +51,12 @@ export default function addPubli() {
         )
             .then(res => {
                 if (res == 201) {
-                    return null
+                    return navigation.navigate("Home")
                 } else {
-                    return null
+                    return navigation.navigate("Home")
                 }
             })
+            
             .then(data => {
                 return data
             })

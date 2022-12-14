@@ -39,8 +39,9 @@ export default function addPubli() {
                 return res.json()
             })
             .then(data => {
-                if (data !== undefined) {
+                if (data != undefined) {
                     alert('CADASTRO FEITO')
+                    navigation.navigate("Login")
                 } else {
                     return data
                 }
