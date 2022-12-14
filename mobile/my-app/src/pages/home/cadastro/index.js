@@ -23,7 +23,7 @@ export default function addPubli() {
     console.log(dados)
 
     const addConta = () => {
-        fetch("http://10.87.207.12:3000/Usuarios"
+        fetch("http://10.87.207.13:3000/Usuarios"
             , {
                 method: 'POST',
                 headers: {
